@@ -18,12 +18,13 @@ const heroManager = new HeroManager();
 //item section +
 const bigSword = new Items("Big Two Handed Sword", Classes.Warrior, 238238);
 const longBow = new Items("Long Bow", Classes.Archer, 102023);
-
+const minBell = new Items("Antique Bell", Classes.Shaman, 238123);
 //item section -
 
 
 warrior1.addItem(bigSword);
 archer1.addItem(longBow);
+shaman1.addItem(minBell)
 
 
 heroManager.addCharacter(shaman1)
@@ -33,4 +34,6 @@ heroManager.addCharacter(warrior1)
 heroManager.addCharacter(archer1)
 heroManager.logAllCharacters();
 
+
+warrior1.respawn(false);
 

@@ -16,12 +16,15 @@ const heroManager = new HeroManager_1.HeroManager();
 //item section +
 const bigSword = new Items_1.Items("Big Two Handed Sword", Classes_1.Classes.Warrior, 238238);
 const longBow = new Items_1.Items("Long Bow", Classes_1.Classes.Archer, 102023);
+const minBell = new Items_1.Items("Antique Bell", Classes_1.Classes.Shaman, 238123);
 //item section -
 warrior1.addItem(bigSword);
 archer1.addItem(longBow);
+shaman1.addItem(minBell);
 heroManager.addCharacter(shaman1);
 heroManager.addCharacter(shaman2);
 heroManager.addCharacter(mage1);
 heroManager.addCharacter(warrior1);
 heroManager.addCharacter(archer1);
 heroManager.logAllCharacters();
+warrior1.respawn(false);

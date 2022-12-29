@@ -33,5 +33,18 @@ class Character {
     addItem(items) {
         return this.inventory.push(items);
     }
+    respawn(isAlive) {
+        let respawnTime = 6;
+        if (isAlive === false) {
+            let mainInterval = setInterval(() => {
+                respawnTime--;
+                console.log(`${this.name} is respawning in ${respawnTime} seconds`);
+                if (respawnTime <= 0) {
+                    console.log(`${this.name} is alive now!`);
+                    return clearInterval(mainInterval);
+                }
+            }, 1000);
+        }
+    }
 }
 exports.Character = Character;
