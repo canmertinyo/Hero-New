@@ -2,23 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Character = void 0;
 class Character {
-    constructor(name, level, maxFoodLevel, foodLevel) {
+    constructor(name, level, maxFoodLevel, foodLevel, health) {
         this.name = name;
         this.level = level;
         this.maxFoodLevel = maxFoodLevel;
         this.foodLevel = foodLevel;
+        this.health = health;
         this.inventory = [];
     }
     ;
     eat(value) {
-        if (this.maxFoodLevel - (value + this.foodLevel) <= -1) {
-            return `hey adventurer, ${this.name} you can't eat anymore of this food! You reach the maximum capacity.`;
-        }
-        else {
-            console.log(this.maxFoodLevel);
-            console.log(this.foodLevel);
-            return this.foodLevel += value;
-        }
+        const condition = (!(this.maxFoodLevel - (value + this.foodLevel) <= -1)) ? this.foodLevel += value : `hey adventurer, ${this.name} you can't eat anymore of this food! You reach the maximum capacity.`;
+        return condition;
     }
     attack(character) {
         if (!character) {
@@ -33,17 +28,22 @@ class Character {
     addItem(items) {
         return this.inventory.push(items);
     }
-    respawn(isAlive) {
-        let respawnTime = 6;
-        if (isAlive === false) {
+    respawn() {
+        if (this.health <= 0) {
+            let timer = 6;
             let mainInterval = setInterval(() => {
-                respawnTime--;
-                console.log(`${this.name} is respawning in ${respawnTime} seconds`);
-                if (respawnTime <= 0) {
-                    console.log(`${this.name} is alive now!`);
-                    return clearInterval(mainInterval);
+                timer--;
+                console.log(`${this.name} is respawning in ${timer} seconds`);
+                if (timer <= 0) {
+                    console.log(`${this.name} is respawned.`);
+                    return this.health = 100, clearInterval(mainInterval);
                 }
+                ;
             }, 1000);
+        }
+        if (this.health > 0) {
+            return `${this.name} is alive!`;
+            1;
         }
     }
 }

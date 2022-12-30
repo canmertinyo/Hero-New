@@ -5,8 +5,8 @@ export class Warrior extends Character {
 
     public classes:Classes | undefined
     
-    constructor(public name:string, public level:number, public maxFoodLevel:number, public foodLevel:number) {
-        super(name,level,maxFoodLevel,foodLevel);
+    constructor(public name: string, public level: number, public maxFoodLevel: number, public foodLevel: number, public health:number) {
+        super(name,level,maxFoodLevel,foodLevel,health);
         this.classes = Classes.Warrior;
     };
 }

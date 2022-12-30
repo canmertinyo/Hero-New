@@ -5,18 +5,12 @@ import { Items } from "../components/Items";
 export abstract class Character {
 
     public inventory: Items[] = [];
-    constructor(public name: string, public level: number, public maxFoodLevel: number, public foodLevel: number) {
+    constructor(public name: string, public level: number, public maxFoodLevel: number, public foodLevel: number, public health:number) {
     };
 
     eat(value: number) {
-        if (this.maxFoodLevel - (value + this.foodLevel) <= -1) {
-            return `hey adventurer, ${this.name} you can't eat anymore of this food! You reach the maximum capacity.`
-        } else {
-            console.log(this.maxFoodLevel)
-            console.log(this.foodLevel)
-            return this.foodLevel += value;
-        }
-
+        const condition = (!(this.maxFoodLevel - (value + this.foodLevel) <= -1)) ? this.foodLevel += value : `hey adventurer, ${this.name} you can't eat anymore of this food! You reach the maximum capacity.`
+        return condition;
     }
 
     attack(character: Character) {
@@ -32,17 +26,20 @@ export abstract class Character {
         return this.inventory.push(items)
     }
 
-    respawn(isAlive: boolean) {
-        let respawnTime = 6;
-        if (isAlive === false) {
+    respawn() {
+        if(this.health <= 0) {
+            let timer = 6;
             let mainInterval = setInterval(() => {
-                respawnTime--;
-                console.log(`${this.name} is respawning in ${respawnTime} seconds`)
-                if (respawnTime <= 0) {
-                    console.log(`${this.name} is alive now!`)
-                    return clearInterval(mainInterval);
-                }
-            }, 1000);
+                timer--;
+                console.log(`${this.name} is respawning in ${timer} seconds`)
+                if(timer <= 0) {
+                    console.log(`${this.name} is respawned.`)
+                    return this.health = 100 , clearInterval(mainInterval);
+                };
+            },1000)
+        }
+        if(this.health > 0) {
+            return `${this.name} is alive!`;1
         }
     }
 
