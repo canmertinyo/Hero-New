@@ -1,11 +1,13 @@
 import { Classes } from "../enums/Classes";
 import { Items } from "../components/Items";
+import { Flag } from "../enums/Flag";
 
 
 export abstract class Character {
 
     public inventory: Items[] = [];
-    constructor(public name: string, public level: number, public maxFoodLevel: number, public foodLevel: number, public health:number) {
+    public classes?:Classes
+    constructor(public name: string, public level: number, public maxFoodLevel: number, public foodLevel: number, public health:number , public flag:Flag) {
     };
 
     eat(value: number) {
@@ -42,5 +44,7 @@ export abstract class Character {
             return `${this.name} is alive!`;1
         }
     }
+
+    
 
 }

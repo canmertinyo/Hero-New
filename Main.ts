@@ -4,14 +4,15 @@ import { Mage } from "./components/Mage";
 import { Shaman } from "./components/Shaman";
 import { Warrior } from "./components/Warrior";
 import { Classes } from "./enums/Classes";
-import { HeroManager } from "./services/HeroManager";
+import { Flag } from "./enums/Flag";
+import { HeroService } from "./services/hero-service";
 
-const shaman1 = new Shaman("yidu", 200, 150, 0,100);
-const shaman2 = new Shaman("Crazy_shaman", 200, 10, 0,100);
-const mage1 = new Mage("deadly", 100, 150, 0,0);
-const warrior1 = new Warrior("pabblo", 100, 150, 0,0);
-const archer1 = new Archer("absolute archer", 100, 150, 0,0);
-const heroManager = new HeroManager();
+const shaman1 = new Shaman("yidu", 200, 150, 0,100,Flag.Chunjo);
+const shaman2 = new Shaman("Crazy_shaman", 200, 10, 0,100,Flag.Chunjo);
+const mage1 = new Mage("deadly", 100, 150, 0,0,Flag.Chunjo);
+const warrior1 = new Warrior("pabblo", 100, 150, 0,0, Flag.Shinso);
+const archer1 = new Archer("absolute archer", 100, 150, 0,0, Flag.Jinnu);
+const heroService = new HeroService();
 
 
 //item section +
@@ -26,24 +27,23 @@ archer1.addItem(longBow);
 shaman1.addItem(minBell)
 
 
-heroManager.addCharacter(shaman1)
-heroManager.addCharacter(shaman2)
-heroManager.addCharacter(mage1)
-heroManager.addCharacter(warrior1)
-heroManager.addCharacter(archer1)
-heroManager.logAllCharacters();
+heroService.addCharacter(shaman1)
+heroService.addCharacter(shaman2)
+heroService.addCharacter(mage1)
+heroService.addCharacter(warrior1)
+heroService.addCharacter(archer1)
+
 
 
 // warrior1.respawn(false);
 //console.log(archer1.respawn())
+// console.log(shaman1.eat(100))
+// console.log(shaman1.eat(50))
+// console.log(shaman1.eat(50))
+// console.log(shaman1.health)
+// console.log(shaman1.respawn())
+// heroService.logAllCharacters()
 
-
-
-console.log(shaman1.eat(100))
-console.log(shaman1.eat(50))
-console.log(shaman1.eat(50))
-
-
-console.log(shaman1.health)
-console.log(shaman1.respawn())
-
+// console.log(heroService.logFlags(Flag.Chunjo))
+// console.log(heroService.logFlags(Flag.Shinso))
+console.log(heroService.logSpecificClass(Classes.Mage))

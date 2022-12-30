@@ -2,12 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Character = void 0;
 class Character {
-    constructor(name, level, maxFoodLevel, foodLevel, health) {
+    constructor(name, level, maxFoodLevel, foodLevel, health, flag) {
         this.name = name;
         this.level = level;
         this.maxFoodLevel = maxFoodLevel;
         this.foodLevel = foodLevel;
         this.health = health;
+        this.flag = flag;
         this.inventory = [];
     }
     ;
