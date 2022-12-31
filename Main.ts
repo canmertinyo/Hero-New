@@ -13,11 +13,8 @@ const heroService = new HeroService();
 
 const shaman1 = new CreateCharacter(new Shaman("yidu1", 200, 150, 0, 100, Flag.Chunjo));
 const archer1 = new CreateCharacter(new Archer("archer", 200, 150, 0, 0, Flag.Shinso));
-const warrior1 = new CreateCharacter(new Warrior("warrior", 200, 150, 0, 0, Flag.Chunjo));
-const mage1 = new CreateCharacter(new Mage("stunning Mage", 100, 130, 140, 100,Flag.Jinnu));
-
-
-
+const warrior1 = new CreateCharacter(new Warrior("ocean avenue", 200, 150, 0, 0, Flag.Chunjo));
+const mage1 = new CreateCharacter(new Mage("stunning Mage", 100, 130, 140, 100, Flag.Jinnu));
 
 
 //item section +
@@ -40,5 +37,7 @@ heroService.addCharacter(shaman1.character)
 heroService.addCharacter(archer1.character)
 heroService.addCharacter(warrior1.character)
 heroService.addCharacter(mage1.character)
+// heroService.logAllCharacters()
+console.log(heroService.logSpecificClass(Classes.Archer))
 
-heroService.logAllCharacters()
+warrior1.character.respawn();

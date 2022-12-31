@@ -12,7 +12,7 @@ const hero_service_1 = require("./services/hero-service");
 const heroService = new hero_service_1.HeroService();
 const shaman1 = new CreateCharacter_1.CreateCharacter(new Shaman_1.Shaman("yidu1", 200, 150, 0, 100, Flag_1.Flag.Chunjo));
 const archer1 = new CreateCharacter_1.CreateCharacter(new Archer_1.Archer("archer", 200, 150, 0, 0, Flag_1.Flag.Shinso));
-const warrior1 = new CreateCharacter_1.CreateCharacter(new Warrior_1.Warrior("warrior", 200, 150, 0, 0, Flag_1.Flag.Chunjo));
+const warrior1 = new CreateCharacter_1.CreateCharacter(new Warrior_1.Warrior("ocean avenue", 200, 150, 0, 0, Flag_1.Flag.Chunjo));
 const mage1 = new CreateCharacter_1.CreateCharacter(new Mage_1.Mage("stunning Mage", 100, 130, 140, 100, Flag_1.Flag.Jinnu));
 //item section +
 const bigSword = new Items_1.Items("Big Two Handed Sword", Classes_1.Classes.Warrior, 238238);
@@ -30,4 +30,6 @@ heroService.addCharacter(shaman1.character);
 heroService.addCharacter(archer1.character);
 heroService.addCharacter(warrior1.character);
 heroService.addCharacter(mage1.character);
-heroService.logAllCharacters();
+// heroService.logAllCharacters()
+console.log(heroService.logSpecificClass(Classes_1.Classes.Archer));
+warrior1.character.respawn();
