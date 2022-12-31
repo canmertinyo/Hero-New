@@ -3,8 +3,8 @@ const fs = require('fs')
 import { promises as fsPromises } from 'fs';
 import * as path from 'path';
 export class RandomCouponCode {
-
-
+  
+      
   // bu kısımı tekrar elden geçir.
     // async readFile() {
     //     try {
@@ -23,7 +23,7 @@ export class RandomCouponCode {
 
 
     //Uuidv4 kodlarını coupon codes txt nin içine ekliyor.
-    generate() {
+    generate(): string {
         try {
             fs.appendFile('../json/coupon-codes.txt',`${uuidv4()}\n`, function(err:any) {
                 if(err) throw err;
