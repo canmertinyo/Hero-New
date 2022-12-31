@@ -3,4 +3,5 @@ export enum Classes {
     Archer = 'Archer',
     Mage = 'Mage',
     Shaman = 'Shaman',
+    Wolf = 'Wolf',
 };

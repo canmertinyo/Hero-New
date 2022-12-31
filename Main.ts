@@ -5,6 +5,7 @@ import { Items } from "./components/Items";
 import { Mage } from "./components/Mage";
 import { Shaman } from "./components/Shaman";
 import { Warrior } from "./components/Warrior";
+import { Wolf } from "./components/Wolf";
 import { Classes } from "./enums/Classes";
 import { Flag } from "./enums/Flag";
 import { HeroService } from "./services/hero-service";
@@ -15,6 +16,7 @@ const shaman1 = new CreateCharacter(new Shaman("yidu1", 200, 150, 0, 100, Flag.C
 const archer1 = new CreateCharacter(new Archer("archer", 200, 150, 0, 0, Flag.Shinso));
 const warrior1 = new CreateCharacter(new Warrior("ocean avenue", 200, 150, 0, 0, Flag.Chunjo));
 const mage1 = new CreateCharacter(new Mage("stunning Mage", 100, 130, 140, 100, Flag.Jinnu));
+const newCharacterWolf = new CreateCharacter(new Wolf("ugly wolf", 40,100,0,100,Flag.Jinnu));
 
 
 //item section +
@@ -40,4 +42,7 @@ heroService.addCharacter(mage1.character)
 // heroService.logAllCharacters()
 console.log(heroService.logSpecificClass(Classes.Archer))
 
-warrior1.character.respawn();
+// warrior1.character.respawn();
+
+newCharacterWolf.character.attack(archer1.character)
+console.log(newCharacterWolf.character.move(true))

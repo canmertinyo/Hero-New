@@ -7,5 +7,6 @@ var Classes;
     Classes["Archer"] = "Archer";
     Classes["Mage"] = "Mage";
     Classes["Shaman"] = "Shaman";
+    Classes["Wolf"] = "Wolf";
 })(Classes = exports.Classes || (exports.Classes = {}));
 ;
