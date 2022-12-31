@@ -5,7 +5,7 @@ import { Flag } from "../enums/Flag";
 export class HeroService {
     characters: Character[] = [];
     addCharacter(character: Character) {
-         return this.characters.push(character)
+         return JSON.stringify(this.characters.push(character),null,5)
     }
 
     logAllCharacters() {

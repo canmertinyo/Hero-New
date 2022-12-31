@@ -49,5 +49,11 @@ class Character {
             console.log(`${this.name} is alive!`);
         }
     }
+    deleteItem(itemId) {
+        let findIndex = this.inventory.indexOf(itemId);
+        if (findIndex > -1) {
+            this.inventory.splice(findIndex, 1);
+        }
+    }
 }
 exports.Character = Character;

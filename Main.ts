@@ -1,13 +1,13 @@
-import { Archer } from "./components/Archer";
-import { CreateCharacter } from "./components/CreateCharacter";
-import { Items } from "./components/Items";
-import { Mage } from "./components/Mage";
-import { Shaman } from "./components/Shaman";
-import { Warrior } from "./components/Warrior";
-import { Wolf } from "./components/Wolf";
-import { Classes } from "./enums/Classes";
-import { Flag } from "./enums/Flag";
-import { HeroService } from "./services/hero-service";
+import { Archer } from './components/Archer';
+import { CreateCharacter } from './components/CreateCharacter';
+import { Items } from './components/Items';
+import { Mage } from './components/Mage';
+import { Shaman } from './components/Shaman';
+import { Warrior } from './components/Warrior';
+import { Wolf } from './components/Wolf';
+import { Classes } from './enums/Classes';
+import { Flag } from './enums/Flag';
+import { HeroService } from './services/hero-service';
 
 
 const heroService = new HeroService();
@@ -23,7 +23,8 @@ const newCharacterWolf = new CreateCharacter(new Wolf("ugly wolf", 40, 100, 0, 1
 const bigSword = new Items("Big Two Handed Sword", Classes.Warrior, 238238);
 const longBow = new Items("Long Bow", Classes.Archer, 102023);
 const minBell = new Items("Antique Bell", Classes.Shaman, 238123);
-const mageStaff = new Items("Staff Basic", Classes.Mage, 2389123)
+const mageStaff = new Items("Staff Basic", Classes.Mage, 2389123);
+const mageBigStaff = new Items("Exclusive Staff", Classes.Shaman, 23892323);
 //item section -
 
 //create a random city name
@@ -41,12 +42,12 @@ heroService.addCharacter(archer1.character)
 heroService.addCharacter(warrior1.character)
 heroService.addCharacter(mage1.character)
 //heroService.logAllCharacters()
-console.log(heroService.logSpecificClass(Classes.Archer))
 
 
 shaman1.character.addItem(minBell);
 archer1.character.addItem(longBow);
 warrior1.character.addItem(bigSword);
+shaman1.character.addItem(mageBigStaff)
 
 //warrior1.character.respawn();
 
@@ -56,3 +57,9 @@ console.log(newCharacterWolf.character.move(true))
 shaman1.character.respawn();    
 
 console.log(archer1.character.eat(50)); //can't eat anymore.
+
+
+shaman1.character.deleteItem(minBell);
+
+// console.log(heroService.logSpecificClass(Classes.Shaman))
+console.log(heroService.logAllCharacters())

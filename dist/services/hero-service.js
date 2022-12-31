@@ -6,7 +6,7 @@ class HeroService {
         this.characters = [];
     }
     addCharacter(character) {
-        return this.characters.push(character);
+        return JSON.stringify(this.characters.push(character), null, 5);
     }
     logAllCharacters() {
         return this.characters.forEach((hero => console.log(hero)));

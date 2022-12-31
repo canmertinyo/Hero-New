@@ -47,6 +47,11 @@ export abstract class Character {
         } else { console.log(`${this.name} is alive!`) }
     }
 
+    deleteItem(itemId:Items) {
+        let findIndex = this.inventory.indexOf(itemId);
+        if(findIndex > -1 ) {
+            this.inventory.splice(findIndex,1);
+        }
 
-
+    }
 }

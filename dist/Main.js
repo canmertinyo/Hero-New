@@ -21,6 +21,7 @@ const bigSword = new Items_1.Items("Big Two Handed Sword", Classes_1.Classes.War
 const longBow = new Items_1.Items("Long Bow", Classes_1.Classes.Archer, 102023);
 const minBell = new Items_1.Items("Antique Bell", Classes_1.Classes.Shaman, 238123);
 const mageStaff = new Items_1.Items("Staff Basic", Classes_1.Classes.Mage, 2389123);
+const mageBigStaff = new Items_1.Items("Exclusive Staff", Classes_1.Classes.Shaman, 23892323);
 //item section -
 //create a random city name
 console.log(archer1.character.eat(50));
@@ -33,12 +34,15 @@ heroService.addCharacter(archer1.character);
 heroService.addCharacter(warrior1.character);
 heroService.addCharacter(mage1.character);
 //heroService.logAllCharacters()
-console.log(heroService.logSpecificClass(Classes_1.Classes.Archer));
 shaman1.character.addItem(minBell);
 archer1.character.addItem(longBow);
 warrior1.character.addItem(bigSword);
+shaman1.character.addItem(mageBigStaff);
 //warrior1.character.respawn();
 newCharacterWolf.character.attack(archer1.character);
 console.log(newCharacterWolf.character.move(true));
 shaman1.character.respawn();
 console.log(archer1.character.eat(50)); //can't eat anymore.
+shaman1.character.deleteItem(minBell);
+// console.log(heroService.logSpecificClass(Classes.Shaman))
+console.log(heroService.logAllCharacters());
