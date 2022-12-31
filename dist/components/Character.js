@@ -19,10 +19,8 @@ class Character {
         return condition;
     }
     attack(character) {
-        if (!character) {
+        if (!character)
             return 0;
-        }
-        ;
         console.log(`${this.name} is attacking to ${character.name}`);
     }
     move(status) {
@@ -45,9 +43,8 @@ class Character {
                 ;
             }, 1000);
         }
-        if (this.health > 0) {
-            return `${this.name} is alive!`;
-            1;
+        else {
+            console.log(`${this.name} is alive!`);
         }
     }
 }

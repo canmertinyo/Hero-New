@@ -9,7 +9,7 @@ class HeroService {
         return this.characters.push(character);
     }
     logAllCharacters() {
-        this.characters.forEach((hero => console.log(hero)));
+        return this.characters.forEach((hero => console.log(hero)));
     }
     logFlags(flag) {
         return this.characters.filter(hero => hero.flag != flag ? null : JSON.stringify(hero, null, 4));

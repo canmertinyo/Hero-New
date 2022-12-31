@@ -9,7 +9,7 @@ export class HeroService {
     }
 
     logAllCharacters() {
-        this.characters.forEach((hero => console.log(hero)));
+        return this.characters.forEach((hero => console.log(hero)));
     }
 
     logFlags(flag: Flag) {

@@ -8,8 +8,8 @@ let randomCityName = new RandomCityName();
 export abstract class Character {
 
     public inventory: Items[] = [];
-    public classes?:Classes
-    constructor(public name: string, public level: number, public maxFoodLevel: number, public foodLevel: number, public health:number , public flag:Flag) {
+    public classes?: Classes
+    constructor(public name: string, public level: number, public maxFoodLevel: number, public foodLevel: number, public health: number, public flag: Flag) {
     };
 
     eat(value: number) {
@@ -18,7 +18,7 @@ export abstract class Character {
     }
 
     attack(character: Character) {
-        if (!character) { return 0 };
+        if (!character) return 0;
         console.log(`${this.name} is attacking to ${character.name}`);
     }
 
@@ -28,26 +28,23 @@ export abstract class Character {
 
     addItem(items: Items) {
         const result = `${items.itemName} succesfully added to ${this.name}'s inventory`;
-        return this.inventory.push(items) , result;
+        return this.inventory.push(items), result;
     }
 
     respawn() {
-        if(this.health <= 0) {
+        if (this.health <= 0) {
             let timer = 6;
             let mainInterval = setInterval(() => {
                 timer--;
                 console.log(`${this.name} is respawning in ${timer} seconds`)
-                if(timer <= 0) {
+                if (timer <= 0) {
                     console.log(`${this.name} is respawned.`)
-                    return this.health = 100 , clearInterval(mainInterval);
+                    return this.health = 100, clearInterval(mainInterval);
                 };
-            },1000)
-        }
-        if(this.health > 0) {
-            return `${this.name} is alive!`;1
-        }
+            }, 1000)
+        } else { console.log(`${this.name} is alive!`) }
     }
 
-    
+
 
 }

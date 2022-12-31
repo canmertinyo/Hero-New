@@ -26,15 +26,19 @@ const mageStaff = new Items_1.Items("Staff Basic", Classes_1.Classes.Mage, 23891
 console.log(archer1.character.eat(50));
 console.log(archer1.character.eat(50));
 console.log(archer1.character.eat(50));
-console.log(archer1.character.eat(50));
+console.log(archer1.character.eat(50)); //can't eat anymore.
 warrior1.character.attack(shaman1.character);
 console.log(mage1.character.addItem(mageStaff));
 heroService.addCharacter(shaman1.character);
 heroService.addCharacter(archer1.character);
 heroService.addCharacter(warrior1.character);
 heroService.addCharacter(mage1.character);
-// heroService.logAllCharacters()
+//heroService.logAllCharacters()
 console.log(heroService.logSpecificClass(Classes_1.Classes.Archer));
-// warrior1.character.respawn();
+shaman1.character.addItem(minBell);
+archer1.character.addItem(longBow);
+warrior1.character.addItem(bigSword);
+//warrior1.character.respawn();
 newCharacterWolf.character.attack(archer1.character);
 console.log(newCharacterWolf.character.move(true));
+shaman1.character.respawn();
