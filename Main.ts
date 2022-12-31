@@ -1,4 +1,6 @@
 import { Archer } from "./components/Archer";
+import { Character } from "./components/Character";
+import { CreateCharacter } from "./components/CreateCharacter";
 import { Items } from "./components/Items";
 import { Mage } from "./components/Mage";
 import { Shaman } from "./components/Shaman";
@@ -7,43 +9,36 @@ import { Classes } from "./enums/Classes";
 import { Flag } from "./enums/Flag";
 import { HeroService } from "./services/hero-service";
 
-const shaman1 = new Shaman("yidu", 200, 150, 0,100,Flag.Chunjo);
-const shaman2 = new Shaman("Crazy_shaman", 200, 10, 0,100,Flag.Chunjo);
-const mage1 = new Mage("deadly", 100, 150, 0,0,Flag.Chunjo);
-const warrior1 = new Warrior("pabblo", 100, 150, 0,0, Flag.Shinso);
-const archer1 = new Archer("absolute archer", 100, 150, 0,0, Flag.Jinnu);
 const heroService = new HeroService();
+
+const shaman1 = new CreateCharacter(new Shaman("yidu1", 200, 150, 0, 100, Flag.Chunjo));
+const archer1 = new CreateCharacter(new Archer("archer", 200, 150, 0, 0, Flag.Shinso));
+const warrior1 = new CreateCharacter(new Warrior("warrior", 200, 150, 0, 0, Flag.Chunjo));
+const mage1 = new CreateCharacter(new Mage("stunning Mage", 100, 130, 140, 100,Flag.Jinnu));
+
+
+
 
 
 //item section +
 const bigSword = new Items("Big Two Handed Sword", Classes.Warrior, 238238);
 const longBow = new Items("Long Bow", Classes.Archer, 102023);
 const minBell = new Items("Antique Bell", Classes.Shaman, 238123);
+const mageStaff = new Items("Staff Basic", Classes.Mage, 2389123)
 //item section -
 
 
-warrior1.addItem(bigSword);
-archer1.addItem(longBow);
-shaman1.addItem(minBell)
+console.log(archer1.character.eat(50));
+console.log(archer1.character.eat(50));
+console.log(archer1.character.eat(50));
+console.log(archer1.character.eat(50));
 
 
-heroService.addCharacter(shaman1)
-heroService.addCharacter(shaman2)
-heroService.addCharacter(mage1)
-heroService.addCharacter(warrior1)
-heroService.addCharacter(archer1)
+warrior1.character.attack(shaman1.character)
+console.log(mage1.character.addItem(mageStaff));
+heroService.addCharacter(shaman1.character)
+heroService.addCharacter(archer1.character)
+heroService.addCharacter(warrior1.character)
+heroService.addCharacter(mage1.character)
 
-
-
-// warrior1.respawn(false);
-//console.log(archer1.respawn())
-// console.log(shaman1.eat(100))
-// console.log(shaman1.eat(50))
-// console.log(shaman1.eat(50))
-// console.log(shaman1.health)
-// console.log(shaman1.respawn())
-// heroService.logAllCharacters()
-
-// console.log(heroService.logFlags(Flag.Chunjo))
-// console.log(heroService.logFlags(Flag.Shinso))
-console.log(heroService.logSpecificClass(Classes.Mage))
+heroService.logAllCharacters()

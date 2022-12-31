@@ -27,7 +27,8 @@ class Character {
         return (status == true) ? `${this.name} is moving to somewhere.` : `${this.name} is idling right now.`;
     }
     addItem(items) {
-        return this.inventory.push(items);
+        const result = `${items.itemName} succesfully added to ${this.name}'s inventory`;
+        return this.inventory.push(items), result;
     }
     respawn() {
         if (this.health <= 0) {

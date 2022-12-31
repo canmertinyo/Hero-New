@@ -25,7 +25,8 @@ export abstract class Character {
     }
 
     addItem(items: Items) {
-        return this.inventory.push(items)
+        const result = `${items.itemName} succesfully added to ${this.name}'s inventory`;
+        return this.inventory.push(items) , result;
     }
 
     respawn() {
