@@ -1,4 +1,4 @@
-//Özel 10 haneli bir kod üretilecek ve bu kodu fonksiyon ile çağıracağız.
+//Özel bir kod üretilecek ve bu kodu fonksiyon ile çağıracağız.
 Bu rastgele bir eşyayı hangi kullanıcı girdiyse onun envanterine ekleyecek.
 ve bu kod bir kere kullanılacak ve kullanılan kodlar bir txt dosyasına kayıt edilecek 
 bir defa daha aynı kodu kullanmamak için o txt dosyasının içini kontrol edecek ve eğer o kod mevcut ise hata verecek.
