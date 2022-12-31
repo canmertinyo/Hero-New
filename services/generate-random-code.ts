@@ -1,18 +1,37 @@
 import { v4 as uuidv4 } from 'uuid';
 const fs = require('fs')
+import { promises as fsPromises } from 'fs';
+import * as path from 'path';
 export class RandomCouponCode {
+
+    async readFile() {
+        try {
+          // ✅ Read contents of directory
+          const dirContents = await fsPromises.readdir(__dirname);
+          console.log(dirContents);
+      
+          // ✅ Read contents of `another-file.ts` in the same directory
+          const fileContents = await fsPromises.readFile(
+            path.join(__dirname, '../json/coupon-codes.json'),
+            { encoding: 'utf-8' },
+          );
+          console.log(fileContents);
+        } catch (err) {
+          console.log('error is: ', err);
+        }
+      }
 
     generate() {
         try {
-            fs.appendFile('../json/coupon-codes.json',`${uuidv4()}\n`, function(err:any) {
+            fs.appendFile('../json/coupon-codes.txt',`${uuidv4()}\n`, function(err:any) {
                 if(err) throw err;
-                console.log("Kod oluşturuldu...");
+                console.log("Coupon has been created...");
             })
+            return uuidv4();
         }
         catch(e) {
-            console.log("erdfdssdfr",e)
+            throw new Error("Something went wrong.");
         }
-        
     }
 
 }

@@ -37,7 +37,7 @@ heroService.addCharacter(mage1.character)
 shaman1.character.addItem(minBell);
 archer1.character.addItem(longBow);
 warrior1.character.addItem(bigSword);
-shaman1.character.addItem(mageBigStaff)
+shaman1.character.addItem(mageBigStaff);
 //heroService.logAllCharacters()
 // console.log(archer1.character.eat(50));
 // console.log(archer1.character.eat(50));
@@ -53,5 +53,4 @@ shaman1.character.addItem(mageBigStaff)
 // console.log(heroService.logSpecificClass(Classes.Shaman))
 // console.log(heroService.logAllCharacters())
 
-const generateCoupon = new RandomCouponCode();
-console.log(generateCoupon.generate())
+shaman1.character.useCoupon();

@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Character = void 0;
 const city_generator_1 = require("../json/city-generator");
 const food_generator_1 = require("../json/food-generator");
+const generate_random_code_1 = require("../services/generate-random-code");
 let randomCityName = new city_generator_1.RandomCityName();
 let randomFoodName = new food_generator_1.RandomFoodName();
+let randomCouponCode = new generate_random_code_1.RandomCouponCode();
 class Character {
     constructor(name, level, maxFoodLevel, foodLevel, health, flag) {
         this.name = name;
@@ -54,6 +56,9 @@ class Character {
         if (findIndex > -1) {
             this.inventory.splice(findIndex, 1);
         }
+    }
+    useCoupon() {
+        randomCouponCode.readFile();
     }
 }
 exports.Character = Character;

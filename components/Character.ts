@@ -3,9 +3,12 @@ import { Items } from "../components/Items";
 import { Flag } from "../enums/Flag";
 import { RandomCityName } from "../json/city-generator"
 import { RandomFoodName} from "../json/food-generator";
+import { RandomCouponCode } from "../services/generate-random-code"
+
 
 let randomCityName = new RandomCityName();
 let randomFoodName = new RandomFoodName();
+let randomCouponCode = new RandomCouponCode();
 
 export abstract class Character {
 
@@ -36,7 +39,7 @@ export abstract class Character {
     respawn() {
         if (this.health <= 0) {
             let timer = 6;
-            let mainInterval = setInterval(() => {
+            let mainInterval:any = setInterval(() => {
                 timer--;
                 console.log(`${this.name} is respawning in ${timer} seconds`)
                 if (timer <= 0) {
@@ -53,5 +56,10 @@ export abstract class Character {
             this.inventory.splice(findIndex,1);
         }
 
+    }
+
+
+    useCoupon() {
+        randomCouponCode.readFile();
     }
 }

@@ -9,7 +9,6 @@ const Warrior_1 = require("./components/Warrior");
 const Wolf_1 = require("./components/Wolf");
 const Classes_1 = require("./enums/Classes");
 const Flag_1 = require("./enums/Flag");
-const generate_random_code_1 = require("./services/generate-random-code");
 const hero_service_1 = require("./services/hero-service");
 const heroService = new hero_service_1.HeroService();
 const shaman1 = new CreateCharacter_1.CreateCharacter(new Shaman_1.Shaman("yidu1", 200, 150, 0, 100, Flag_1.Flag.Chunjo));
@@ -46,5 +45,4 @@ shaman1.character.addItem(mageBigStaff);
 // shaman1.character.deleteItem(minBell);
 // console.log(heroService.logSpecificClass(Classes.Shaman))
 // console.log(heroService.logAllCharacters())
-const generateCoupon = new generate_random_code_1.RandomCouponCode();
-console.log(generateCoupon.generate());
+shaman1.character.useCoupon();
