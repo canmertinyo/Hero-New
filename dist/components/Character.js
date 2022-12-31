@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Character = void 0;
 const city_generator_1 = require("../json/city-generator");
+const food_generator_1 = require("../json/food-generator");
 let randomCityName = new city_generator_1.RandomCityName();
+let randomFoodName = new food_generator_1.RandomFoodName();
 class Character {
     constructor(name, level, maxFoodLevel, foodLevel, health, flag) {
         this.name = name;
@@ -15,7 +17,7 @@ class Character {
     }
     ;
     eat(value) {
-        const condition = (!(this.maxFoodLevel - (value + this.foodLevel) <= -1)) ? this.foodLevel += value : `hey adventurer, ${this.name} you can't eat anymore of this food! You reach the maximum capacity.`;
+        const condition = (!(this.maxFoodLevel - (value + this.foodLevel) <= -1)) ? this.foodLevel += value : `hey adventurer, ${this.name} you can't eat anymore of this ${randomFoodName.generate()}! You reach the maximum capacity.`;
         return condition;
     }
     attack(character) {

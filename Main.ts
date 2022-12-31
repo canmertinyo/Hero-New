@@ -31,7 +31,7 @@ const mageStaff = new Items("Staff Basic", Classes.Mage, 2389123)
 console.log(archer1.character.eat(50));
 console.log(archer1.character.eat(50));
 console.log(archer1.character.eat(50));
-console.log(archer1.character.eat(50)); //can't eat anymore.
+
 
 
 warrior1.character.attack(shaman1.character)
@@ -53,4 +53,6 @@ warrior1.character.addItem(bigSword);
 newCharacterWolf.character.attack(archer1.character)
 console.log(newCharacterWolf.character.move(true))
 
-shaman1.character.respawn();
+shaman1.character.respawn();    
+
+console.log(archer1.character.eat(50)); //can't eat anymore.

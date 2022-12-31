@@ -2,8 +2,10 @@ import { Classes } from "../enums/Classes";
 import { Items } from "../components/Items";
 import { Flag } from "../enums/Flag";
 import { RandomCityName } from "../json/city-generator"
+import { RandomFoodName} from "../json/food-generator";
 
 let randomCityName = new RandomCityName();
+let randomFoodName = new RandomFoodName();
 
 export abstract class Character {
 
@@ -13,7 +15,7 @@ export abstract class Character {
     };
 
     eat(value: number) {
-        const condition = (!(this.maxFoodLevel - (value + this.foodLevel) <= -1)) ? this.foodLevel += value : `hey adventurer, ${this.name} you can't eat anymore of this food! You reach the maximum capacity.`
+        const condition = (!(this.maxFoodLevel - (value + this.foodLevel) <= -1)) ? this.foodLevel += value : `hey adventurer, ${this.name} you can't eat anymore of this ${randomFoodName.generate()}! You reach the maximum capacity.`
         return condition;
     }
 
