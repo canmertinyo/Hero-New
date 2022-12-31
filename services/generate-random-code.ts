@@ -6,11 +6,9 @@ export class RandomCouponCode {
 
     async readFile() {
         try {
-          // ✅ Read contents of directory
           const dirContents = await fsPromises.readdir(__dirname);
           console.log(dirContents);
       
-          // ✅ Read contents of `another-file.ts` in the same directory
           const fileContents = await fsPromises.readFile(
             path.join(__dirname, '../json/coupon-codes.json'),
             { encoding: 'utf-8' },
