@@ -54,4 +54,3 @@ newCharacterWolf.character.attack(archer1.character)
 console.log(newCharacterWolf.character.move(true))
 
 shaman1.character.respawn();
-
