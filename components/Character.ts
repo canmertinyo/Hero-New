@@ -1,7 +1,9 @@
 import { Classes } from "../enums/Classes";
 import { Items } from "../components/Items";
 import { Flag } from "../enums/Flag";
+import { RandomCityName } from "../json/city-generator"
 
+let randomCityName = new RandomCityName();
 
 export abstract class Character {
 
@@ -21,7 +23,7 @@ export abstract class Character {
     }
 
     move(status: boolean) {
-        return (status == true) ? `${this.name} is moving to somewhere.` : `${this.name} is idling right now.`;
+        return (status == true) ? `${this.name} is moving to ${randomCityName.generate()}` : `${this.name} is idling right now.`;
     }
 
     addItem(items: Items) {

@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Character = void 0;
+const city_generator_1 = require("../json/city-generator");
+let randomCityName = new city_generator_1.RandomCityName();
 class Character {
     constructor(name, level, maxFoodLevel, foodLevel, health, flag) {
         this.name = name;
@@ -24,7 +26,7 @@ class Character {
         console.log(`${this.name} is attacking to ${character.name}`);
     }
     move(status) {
-        return (status == true) ? `${this.name} is moving to somewhere.` : `${this.name} is idling right now.`;
+        return (status == true) ? `${this.name} is moving to ${randomCityName.generate()}` : `${this.name} is idling right now.`;
     }
     addItem(items) {
         const result = `${items.itemName} succesfully added to ${this.name}'s inventory`;

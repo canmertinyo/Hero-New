@@ -10,6 +10,7 @@ import { Classes } from "./enums/Classes";
 import { Flag } from "./enums/Flag";
 import { HeroService } from "./services/hero-service";
 
+
 const heroService = new HeroService();
 
 const shaman1 = new CreateCharacter(new Shaman("yidu1", 200, 150, 0, 100, Flag.Chunjo));
@@ -26,6 +27,7 @@ const minBell = new Items("Antique Bell", Classes.Shaman, 238123);
 const mageStaff = new Items("Staff Basic", Classes.Mage, 2389123)
 //item section -
 
+//create a random city name
 
 console.log(archer1.character.eat(50));
 console.log(archer1.character.eat(50));

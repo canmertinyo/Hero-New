@@ -22,6 +22,7 @@ const longBow = new Items_1.Items("Long Bow", Classes_1.Classes.Archer, 102023);
 const minBell = new Items_1.Items("Antique Bell", Classes_1.Classes.Shaman, 238123);
 const mageStaff = new Items_1.Items("Staff Basic", Classes_1.Classes.Mage, 2389123);
 //item section -
+//create a random city name
 console.log(archer1.character.eat(50));
 console.log(archer1.character.eat(50));
 console.log(archer1.character.eat(50));
