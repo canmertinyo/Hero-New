@@ -1,9 +1,15 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Character = void 0;
 const city_generator_1 = require("../json/city-generator");
 const food_generator_1 = require("../json/food-generator");
 const generate_random_code_1 = require("../services/generate-random-code");
+const coupon_items_json_1 = __importDefault(require("../json/coupon-items.json"));
+const fs = require('fs');
+const readline = require('readline');
 let randomCityName = new city_generator_1.RandomCityName();
 let randomFoodName = new food_generator_1.RandomFoodName();
 let randomCouponCode = new generate_random_code_1.RandomCouponCode();
@@ -16,6 +22,7 @@ class Character {
         this.health = health;
         this.flag = flag;
         this.inventory = [];
+        this.generateRandomItem = Math.floor(Math.random() * coupon_items_json_1.default.length);
     }
     ;
     eat(value) {
@@ -57,8 +64,19 @@ class Character {
             this.inventory.splice(findIndex, 1);
         }
     }
-    useCoupon() {
-        randomCouponCode.readFile();
+    createCoupon() {
+        return randomCouponCode.generate();
+    }
+    useCoupon(coupon) {
+        const couponTxt = '../json/coupon-codes.txt';
+        const read = readline.createInterface({
+            input: fs.createReadStream(couponTxt)
+        });
+        read.on('line', (text) => {
+            if (text === coupon) {
+                return this.inventory.push();
+            }
+        });
     }
 }
 exports.Character = Character;

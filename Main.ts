@@ -7,7 +7,6 @@ import { Warrior } from './components/Warrior';
 import { Wolf } from './components/Wolf';
 import { Classes } from './enums/Classes';
 import { Flag } from './enums/Flag';
-import { RandomCouponCode } from './services/generate-random-code';
 import { HeroService } from './services/hero-service';
 
 
@@ -53,4 +52,5 @@ shaman1.character.addItem(mageBigStaff);
 // console.log(heroService.logSpecificClass(Classes.Shaman))
 // console.log(heroService.logAllCharacters())
 
-shaman1.character.useCoupon();
+shaman1.character.createCoupon();
+shaman1.character.useCoupon("4130d990-d353-4169-9669-8040685abd3b");

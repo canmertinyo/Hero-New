@@ -45,4 +45,5 @@ shaman1.character.addItem(mageBigStaff);
 // shaman1.character.deleteItem(minBell);
 // console.log(heroService.logSpecificClass(Classes.Shaman))
 // console.log(heroService.logAllCharacters())
-shaman1.character.useCoupon();
+shaman1.character.createCoupon();
+shaman1.character.useCoupon("4130d990-d353-4169-9669-8040685abd3b");

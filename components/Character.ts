@@ -4,6 +4,9 @@ import { Flag } from "../enums/Flag";
 import { RandomCityName } from "../json/city-generator"
 import { RandomFoodName} from "../json/food-generator";
 import { RandomCouponCode } from "../services/generate-random-code"
+import couponItems from '../json/coupon-items.json'
+const fs = require('fs')
+const readline = require('readline');
 
 
 let randomCityName = new RandomCityName();
@@ -14,6 +17,7 @@ export abstract class Character {
 
     public inventory: Items[] = [];
     public classes?: Classes
+    generateRandomItem = Math.floor(Math.random() * couponItems.length);
     constructor(public name: string, public level: number, public maxFoodLevel: number, public foodLevel: number, public health: number, public flag: Flag) {
     };
 
@@ -58,8 +62,19 @@ export abstract class Character {
 
     }
 
+    createCoupon() {
+        return randomCouponCode.generate();
+    }
 
-    useCoupon() {
-        randomCouponCode.readFile();
+    useCoupon(coupon:string) {
+        const couponTxt = '../json/coupon-codes.txt';
+        const read = readline.createInterface({
+            input : fs.createReadStream(couponTxt)
+        });
+        read.on('line', (text:string) => {
+            if(text === coupon) {
+                return this.inventory.push()
+            } 
+        }) 
     }
 }
