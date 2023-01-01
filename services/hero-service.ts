@@ -17,6 +17,6 @@ export class HeroService {
     }
 
     logSpecificClass(heroType : Classes) {
-        return this.characters.filter(hero => hero.classes != heroType ? null:JSON.stringify(hero,null,4));
+         console.log(this.characters.filter(hero => hero.classes != heroType ? null:JSON.stringify(hero)));
     }
 }

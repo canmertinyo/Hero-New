@@ -68,9 +68,6 @@ class Character {
         }
     }
     ;
-    logInventory() {
-        return this.inventory;
-    }
     createCoupon() {
         return randomCouponCode.generate();
     }
@@ -82,8 +79,9 @@ class Character {
         });
         read.on('line', (text) => {
             if (text === coupon) {
-                console.log("Item added your inventory.");
-                return this.inventory.push(Main_1.randomItems[this.generateRandomItem]);
+                this.addItem(Main_1.randomItems[this.generateRandomItem]);
+                console.log(`${Main_1.randomItems[this.generateRandomItem]} has been added to your inventory.`);
+                console.log(this.inventory);
             }
         });
     }

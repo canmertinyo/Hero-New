@@ -60,9 +60,12 @@ shaman1.character.addItem(mageBigStaff);
 // console.log(heroService.logSpecificClass(Classes.Shaman))
 // console.log(heroService.logAllCharacters())
 
-shaman1.character.createCoupon();
-shaman1.character.useCoupon("ee75702c-0115-4cc8-9b93-d4a0f624f558")
+// shaman1.character.createCoupon();
+// shaman1.character.useCoupon("2a892caa-8653-4658-9458-2dcb2115fd12");
+
+
+// warrior1.character.createCoupon();
+warrior1.character.useCoupon("58a086fb-df07-4f56-ae59-35bfc52b091c")
 
 
 
-console.log(heroService.logSpecificClass(Classes.Shaman))

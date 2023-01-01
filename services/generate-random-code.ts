@@ -8,11 +8,11 @@ export class RandomCouponCode {
         try {
             fs.appendFile('../json/coupon-codes.txt', `${this.UUIDV4}\n`,  (err: any) => {
                 if (err) throw err; console.log(`
-                                            Your coupon has been created!
+                                            Hello adventurer! Your coupon has been created!
                                             ************************
 
-                                            Code : ${this.UUIDV4}
-
+                                            Code : Open your coupen-codes.txt on your local computer. We send it through the in txt file.
+                                            Hint : To use your coupon code, simply just put your code in the text area. Then hit the submit button!
                                             ************************
                 `);
             })

@@ -15,7 +15,7 @@ class HeroService {
         return this.characters.filter(hero => hero.flag != flag ? null : JSON.stringify(hero, null, 4));
     }
     logSpecificClass(heroType) {
-        return this.characters.filter(hero => hero.classes != heroType ? null : JSON.stringify(hero, null, 4));
+        console.log(this.characters.filter(hero => hero.classes != heroType ? null : JSON.stringify(hero)));
     }
 }
 exports.HeroService = HeroService;
