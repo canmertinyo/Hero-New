@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.randomItems = void 0;
 const Archer_1 = require("./components/Archer");
 const CreateCharacter_1 = require("./components/CreateCharacter");
 const Items_1 = require("./components/Items");
@@ -23,6 +24,11 @@ const minBell = new Items_1.Items("Antique Bell", Classes_1.Classes.Shaman, 2381
 const mageStaff = new Items_1.Items("Staff Basic", Classes_1.Classes.Mage, 2389123);
 const mageBigStaff = new Items_1.Items("Exclusive Staff", Classes_1.Classes.Shaman, 23892323);
 //item section -
+//random items 
+const random1 = new Items_1.Items("Daedric Bow", Classes_1.Classes.Archer, 232323);
+const random2 = new Items_1.Items("Forsworn Bow", Classes_1.Classes.Archer, 2372);
+const random3 = new Items_1.Items("Banded Iron Armor", Classes_1.Classes.Warrior, 238238);
+exports.randomItems = [random1, random2, random3];
 heroService.addCharacter(shaman1.character);
 heroService.addCharacter(archer1.character);
 heroService.addCharacter(warrior1.character);
@@ -46,4 +52,4 @@ shaman1.character.addItem(mageBigStaff);
 // console.log(heroService.logSpecificClass(Classes.Shaman))
 // console.log(heroService.logAllCharacters())
 shaman1.character.createCoupon();
-shaman1.character.useCoupon("4130d990-d353-4169-9669-8040685abd3b");
+shaman1.character.useCoupon("b1fc9514-be37-483a-a9e3-573d337f2457");
