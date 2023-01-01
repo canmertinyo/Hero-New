@@ -17,7 +17,7 @@ export abstract class Character {
 
     public inventory: Items[] = [];
     public classes?: Classes;
-    generateRandomItem = Math.floor(Math.random() * randomItems.length);
+    generateRandomItem = Math.floor(Math.random() * 3);
     constructor(public name: string, public level: number, public maxFoodLevel: number, public foodLevel: number, public health: number, public flag: Flag) {
     };
 
@@ -61,6 +61,10 @@ export abstract class Character {
         }
     };
 
+    logInventory() {
+        return this.inventory;
+    }
+
     createCoupon() {
         return randomCouponCode.generate();
     };
@@ -72,6 +76,7 @@ export abstract class Character {
         });
         read.on('line', (text: string) => {
             if (text === coupon) {
+                console.log("Item added your inventory.")
                 return this.inventory.push(randomItems[this.generateRandomItem])
             }
         });

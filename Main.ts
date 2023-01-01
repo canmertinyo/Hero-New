@@ -61,4 +61,8 @@ shaman1.character.addItem(mageBigStaff);
 // console.log(heroService.logAllCharacters())
 
 shaman1.character.createCoupon();
-shaman1.character.useCoupon("b1fc9514-be37-483a-a9e3-573d337f2457");
+shaman1.character.useCoupon("ee75702c-0115-4cc8-9b93-d4a0f624f558")
+
+
+
+console.log(heroService.logSpecificClass(Classes.Shaman))

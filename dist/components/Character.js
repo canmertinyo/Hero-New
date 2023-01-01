@@ -19,7 +19,7 @@ class Character {
         this.health = health;
         this.flag = flag;
         this.inventory = [];
-        this.generateRandomItem = Math.floor(Math.random() * Main_1.randomItems.length);
+        this.generateRandomItem = Math.floor(Math.random() * 3);
     }
     ;
     eat(value) {
@@ -68,6 +68,9 @@ class Character {
         }
     }
     ;
+    logInventory() {
+        return this.inventory;
+    }
     createCoupon() {
         return randomCouponCode.generate();
     }
@@ -79,6 +82,7 @@ class Character {
         });
         read.on('line', (text) => {
             if (text === coupon) {
+                console.log("Item added your inventory.");
                 return this.inventory.push(Main_1.randomItems[this.generateRandomItem]);
             }
         });
