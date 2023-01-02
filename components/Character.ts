@@ -79,7 +79,11 @@ export abstract class Character {
         });
     };
 
-
+    
+    //side specs : 
+    //like fishing 
+    //mining
+    //etc....
 
 
 };
