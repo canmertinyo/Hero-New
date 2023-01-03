@@ -7,9 +7,6 @@ const generate_random_code_1 = require("../services/generate-random-code");
 const Main_1 = require("../Main");
 const fs = require('fs');
 const readline = require('readline');
-let randomCityName = new city_generator_1.RandomCityName();
-let randomFoodName = new food_generator_1.RandomFoodName();
-let randomCouponCode = new generate_random_code_1.RandomCouponCode();
 class Character {
     constructor(name, level, maxFoodLevel, foodLevel, health, flag) {
         this.name = name;
@@ -19,22 +16,25 @@ class Character {
         this.health = health;
         this.flag = flag;
         this.inventory = [];
-        this.generateRandomItem = Math.floor(Math.random() * 3);
+        this.randomIndex = Math.floor(Math.random() * 3);
+        this.randomCouponCode = new generate_random_code_1.RandomCouponCode();
+        this.randomCityName = new city_generator_1.RandomCityName();
+        this.randomFoodName = new food_generator_1.RandomFoodName();
     }
     ;
     eat(value) {
-        const condition = (!(this.maxFoodLevel - (value + this.foodLevel) <= -1)) ? this.foodLevel += value : `hey adventurer, ${this.name} you can't eat anymore of this ${randomFoodName.generate()}! You reach the maximum capacity.`;
+        const condition = (!(this.maxFoodLevel - (value + this.foodLevel) <= -1)) ? this.foodLevel += value : `hey adventurer, ${this.name} you can't eat anymore of this ${this.randomFoodName.generate()}! You reach the maximum capacity.`;
         return condition;
     }
     ;
     attack(character) {
         if (!character)
-            return 0;
+            return;
         console.log(`${this.name} is attacking to ${character.name}`);
     }
     ;
     move(status) {
-        return (status == true) ? `${this.name} is moving to ${randomCityName.generate()}` : `${this.name} is idling right now.`;
+        return (status == true) ? `${this.name} is moving to ${this.randomCityName.generate()}` : `${this.name} is idling right now.`;
     }
     ;
     addItem(items) {
@@ -69,7 +69,7 @@ class Character {
     }
     ;
     createCoupon() {
-        return randomCouponCode.generate();
+        return this.randomCouponCode.generate();
     }
     ;
     useCoupon(coupon) {
@@ -79,8 +79,8 @@ class Character {
         });
         read.on('line', (text) => {
             if (text === coupon) {
-                this.addItem(Main_1.randomItems[this.generateRandomItem]);
-                console.log(`${Main_1.randomItems[this.generateRandomItem]} has been added to your inventory.`);
+                this.addItem(Main_1.randomItems[this.randomIndex]);
+                console.log(`${Main_1.randomItems[this.randomIndex]} has been added to your inventory.`);
                 console.log(this.inventory);
             }
         });

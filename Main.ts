@@ -1,6 +1,5 @@
 import { Archer } from './components/Archer';
-import { CreateCharacter } from './components/CreateCharacter';
-import { Items } from './components/Items';
+import { Item } from './components/Item';
 import { Mage } from './components/Mage';
 import { Shaman } from './components/Shaman';
 import { Warrior } from './components/Warrior';
@@ -12,50 +11,50 @@ import { HeroService } from './services/hero-service';
 
 const heroService = new HeroService();
 
-const shaman1 = new CreateCharacter(new Shaman("yidu1", 200, 150, 0, 100, Flag.Chunjo));
-const archer1 = new CreateCharacter(new Archer("archer", 200, 150, 0, 0, Flag.Shinso));
-const warrior1 = new CreateCharacter(new Warrior("ocean avenue", 200, 150, 0, 0, Flag.Chunjo));
-const mage1 = new CreateCharacter(new Mage("stunning Mage", 100, 130, 140, 100, Flag.Jinnu));
-const newCharacterWolf = new CreateCharacter(new Wolf("ugly wolf", 40, 100, 0, 100, Flag.Jinnu));
+const shaman1 = new Shaman("yidu1", 200, 150, 0, 100, Flag.Chunjo);
+const archer1 = new Archer("archer", 200, 150, 0, 0, Flag.Shinso);
+const warrior1 = new Warrior("ocean avenue", 200, 150, 0, 0, Flag.Chunjo);
+const mage1 = new Mage("stunning Mage", 100, 130, 140, 100, Flag.Jinnu);
+const newCharacterWolf = new Wolf("ugly wolf", 40, 100, 0, 100, Flag.Jinnu);
 
 
 //item section +
-const bigSword = new Items("Big Two Handed Sword", Classes.Warrior, 238238);
-const longBow = new Items("Long Bow", Classes.Archer, 102023);
-const minBell = new Items("Antique Bell", Classes.Shaman, 238123);
-const mageStaff = new Items("Staff Basic", Classes.Mage, 2389123);
-const mageBigStaff = new Items("Exclusive Staff", Classes.Shaman, 23892323);
+const bigSword = new Item("Big Two Handed Sword", Classes.Warrior, 238238);
+const longBow = new Item("Long Bow", Classes.Archer, 102023);
+const minBell = new Item("Antique Bell", Classes.Shaman, 238123);
+const mageStaff = new Item("Staff Basic", Classes.Mage, 2389123);
+const mageBigStaff = new Item("Exclusive Staff", Classes.Shaman, 23892323);
 //item section -
 
 
 //random items 
-const random1 = new Items("Daedric Bow",Classes.Archer, 232323);
-const random2 = new Items("Forsworn Bow", Classes.Archer, 2372);
-const random3 = new Items("Banded Iron Armor", Classes.Warrior, 238238);
-export const randomItems:Items[] = [random1,random2,random3];
+const random1 = new Item("Daedric Bow",Classes.Archer, 232323);
+const random2 = new Item("Forsworn Bow", Classes.Archer, 2372);
+const random3 = new Item("Banded Iron Armor", Classes.Warrior, 238238);
+export const randomItems:Item[] = [random1,random2,random3];
 
 
-heroService.addCharacter(shaman1.character)
-heroService.addCharacter(archer1.character)
-heroService.addCharacter(warrior1.character)
-heroService.addCharacter(mage1.character)
+heroService.addCharacter(shaman1)
+heroService.addCharacter(archer1)
+heroService.addCharacter(warrior1)
+heroService.addCharacter(mage1)
 
 
-shaman1.character.addItem(minBell);
-archer1.character.addItem(longBow);
-warrior1.character.addItem(bigSword);
-shaman1.character.addItem(mageBigStaff);
+shaman1.addItem(minBell);
+archer1.addItem(longBow);
+warrior1.addItem(bigSword);
+shaman1.addItem(mageBigStaff);
 //heroService.logAllCharacters()
-// console.log(archer1.character.eat(50));
-// console.log(archer1.character.eat(50));
-// console.log(archer1.character.eat(50));
-// warrior1.character.attack(shaman1.character)
+// console.log(archer1.eat(50));
+// console.log(archer1.eat(50));
+// console.log(archer1.eat(50));
+// warrior1.attack(shaman1.character)
 // console.log(mage1.character.addItem(mageStaff));
-//warrior1.character.respawn();
+//warrior1.respawn();
 // newCharacterWolf.character.attack(archer1.character)
 // console.log(newCharacterWolf.character.move(true))
 // shaman1.character.respawn();    
-// console.log(archer1.character.eat(50)); //can't eat anymore.
+// console.log(archer1.eat(50)); //can't eat anymore.
 // shaman1.character.deleteItem(minBell);
 // console.log(heroService.logSpecificClass(Classes.Shaman))
 // console.log(heroService.logAllCharacters())
@@ -65,7 +64,7 @@ shaman1.character.addItem(mageBigStaff);
 
 
 // warrior1.character.createCoupon();
-warrior1.character.useCoupon("58a086fb-df07-4f56-ae59-35bfc52b091c")
+// warrior1.useCoupon("58a086fb-df07-4f56-ae59-35bfc52b091c")
 
 
-
+console.log(warrior1.move(true));

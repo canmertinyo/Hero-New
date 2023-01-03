@@ -1,5 +1,5 @@
 import { Classes } from "../enums/Classes";
-import { Items } from "../components/Items";
+import { Item } from "./Item";
 import { Flag } from "../enums/Flag";
 import { RandomCityName } from "../json/city-generator"
 import { RandomFoodName } from "../json/food-generator";
@@ -8,42 +8,40 @@ import { randomItems } from "../Main"
 const fs = require('fs')
 const readline = require('readline');
 
-
-let randomCityName = new RandomCityName();
-let randomFoodName = new RandomFoodName();
-let randomCouponCode = new RandomCouponCode();
-
 export abstract class Character {
 
-    public inventory: Items[] = [];
+    public inventory: Item[] = [];
     public classes?: Classes;
-    generateRandomItem = Math.floor(Math.random() * 3);
+    public randomIndex = Math.floor(Math.random() * 3);
+    public randomCouponCode = new RandomCouponCode();
+    public randomCityName = new RandomCityName();
+    public randomFoodName = new RandomFoodName();
     constructor(public name: string, public level: number, public maxFoodLevel: number, public foodLevel: number, public health: number, public flag: Flag) {
     };
 
-    eat(value: number) {
-        const condition = (!(this.maxFoodLevel - (value + this.foodLevel) <= -1)) ? this.foodLevel += value : `hey adventurer, ${this.name} you can't eat anymore of this ${randomFoodName.generate()}! You reach the maximum capacity.`;
+    public eat(value: number): number | string {
+        const condition = (!(this.maxFoodLevel - (value + this.foodLevel) <= -1)) ? this.foodLevel += value : `hey adventurer, ${this.name} you can't eat anymore of this ${this.randomFoodName.generate()}! You reach the maximum capacity.`;
         return condition;
     };
 
-    attack(character: Character) {
-        if (!character) return 0;
+    public attack(character: Character): string | undefined {
+        if (!character) return;
         console.log(`${this.name} is attacking to ${character.name}`);
     };
 
-    move(status: boolean) {
-        return (status == true) ? `${this.name} is moving to ${randomCityName.generate()}` : `${this.name} is idling right now.`;
+    public move(status: boolean): string {
+        return (status == true) ? `${this.name} is moving to ${this.randomCityName.generate()}` : `${this.name} is idling right now.`;
     };
 
-    addItem(items: Items) {
+    public addItem(items: Item): number | string {
         const result = `${items.itemName} succesfully added to ${this.name}'s inventory`;
-        return this.inventory.push(items), result;
+        return this.inventory.push(items), result
     };
 
-    respawn() {
+    public respawn() {
         if (this.health <= 0) {
             let timer = 6;
-            let mainInterval: any = setInterval(() => {
+            let mainInterval: NodeJS.Timer = setInterval(() => {
                 timer--;
                 console.log(`${this.name} is respawning in ${timer} seconds`);
                 if (timer <= 0) {
@@ -54,37 +52,29 @@ export abstract class Character {
         } else { console.log(`${this.name} is alive!`) };
     };
 
-    deleteItem(itemId: Items) {
-        let findIndex = this.inventory.indexOf(itemId);
+    public deleteItem(itemId: Item): void {
+        let findIndex: number = this.inventory.indexOf(itemId);
         if (findIndex > -1) {
             this.inventory.splice(findIndex, 1);
         }
     };
 
-    createCoupon() {
-        return randomCouponCode.generate();
+    public createCoupon(): string {
+        return this.randomCouponCode.generate();
     };
 
-    useCoupon(coupon: string) {
+    public useCoupon(coupon: string) {
         const couponTxt = '../json/coupon-codes.txt';
         const read = readline.createInterface({
             input: fs.createReadStream(couponTxt)
         });
         read.on('line', (text: string) => {
             if (text === coupon) {
-                this.addItem(randomItems[this.generateRandomItem])
-                console.log(`${randomItems[this.generateRandomItem]} has been added to your inventory.`)
+                this.addItem(randomItems[this.randomIndex])
+                console.log(`${randomItems[this.randomIndex]} has been added to your inventory.`)
                 console.log(this.inventory)
             }
         });
     };
-
-    
-    //side specs : 
-    //like fishing 
-    //mining
-    //etc....
-
-
 };
 
