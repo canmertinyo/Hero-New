@@ -10,7 +10,19 @@ const Wolf_1 = require("./components/Wolf");
 const Classes_1 = require("./enums/Classes");
 const Flag_1 = require("./enums/Flag");
 const hero_service_1 = require("./services/hero-service");
+var mysql = require('mysql');
 const heroService = new hero_service_1.HeroService();
+//mysql connection : 
+const connectDatabase = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'smack1919'
+});
+connectDatabase.connect(function (err) {
+    if (err)
+        throw err;
+    console.log('Connected!');
+});
 const shaman1 = new Shaman_1.Shaman("yidu1", 200, 150, 0, 100, Flag_1.Flag.Chunjo);
 const archer1 = new Archer_1.Archer("archer", 200, 150, 0, 0, Flag_1.Flag.Shinso);
 const warrior1 = new Warrior_1.Warrior("ocean avenue", 200, 150, 0, 0, Flag_1.Flag.Chunjo);

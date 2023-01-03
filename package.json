@@ -2,6 +2,7 @@
   "dependencies": {
     "fs": "^0.0.1-security",
     "fs-extra": "^11.1.0",
+    "mysql": "^2.18.1",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
