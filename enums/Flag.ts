@@ -1,6 +1,5 @@
 export enum Flag {
-    Shinso = 'Shinsoo',
-    Jinnu = 'Jinnu',
-    Chunjo = 'Chunjo'
-};
-
+  Shinso = 'Shinsoo',
+  Jinnu = 'Jinnu',
+  Chunjo = 'Chunjo'
+}
