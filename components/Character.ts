@@ -4,8 +4,7 @@ import { NameGenerator, RandomCouponCode } from '../services'
 import { randomItems } from '../main'
 import food from '../json/food.json'
 import cities from '../json/cities.json'
-import fs from 'fs'
-import readline from 'readline'
+import { Coupon, couponSchema } from '../database/schemas/coupon'
 
 export abstract class Character {
   public inventory: Item[] = []
@@ -73,21 +72,22 @@ export abstract class Character {
     }
   }
 
-  public createCoupon(): string {
-    return this.randomCouponCode.generate()
-  }
-
-  public useCoupon(coupon: string): void {
-    const couponTxt = '../json/coupon-codes.txt'
-    const read = readline.createInterface({
-      input: fs.createReadStream(couponTxt)
+  public createCoupon(_coupon: string): void {
+    Coupon.create({
+      coupon: _coupon
+    }).then((result) => {
+      console.log(result)
     })
-    read.on('line', (text: string) => {
-      if (text === coupon) {
-        this.addItem(randomItems[this.randomIndex])
-        console.log(`${randomItems[this.randomIndex]} has been added to your inventory.`)
-        console.log(this.inventory)
-      }
-    })
+    // const couponTxt = '../json/coupon-codes.txt'
+    // const read = readline.createInterface({
+    //   input: fs.createReadStream(couponTxt)
+    // })
+    // read.on('line', (text: string) => {
+    //   if (text === coupon) {
+    //     this.addItem(randomItems[this.randomIndex])
+    //     console.log(`${randomItems[this.randomIndex]} has been added to your inventory.`)
+    //     console.log(this.inventory)
+    //   }
+    // })
   }
 }
