@@ -1,6 +1,6 @@
 import { Classes, Flag } from '../enums'
 import { Item } from './index'
-import { RandomCityName } from '../json/city-generator'
+import { RandomCityName } from '../services/city-generator'
 import { RandomFoodName } from '../json/food-generator'
 import { RandomCouponCode } from '../services'
 import { randomItems } from '../main'
