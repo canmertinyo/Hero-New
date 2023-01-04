@@ -1,6 +1,5 @@
-import { Classes } from '../enums/classes'
-import { Flag } from '../enums/flag'
-import { Character } from './character'
+import { Classes, Flag } from '../enums'
+import { Character } from './index'
 
 export class Wolf extends Character {
   public classes?: Classes

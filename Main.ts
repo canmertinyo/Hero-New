@@ -1,11 +1,6 @@
-import { Archer } from './components/archer'
-import { Item } from './components/item'
-import { Mage } from './components/mage'
-import { Shaman } from './components/shaman'
-import { Warrior } from './components/warrior'
-import { Classes } from './enums/classes'
-import { Flag } from './enums/flag'
-import { HeroService } from './services/hero-service'
+import { Archer, Item, Mage, Shaman, Warrior } from './components'
+import { Classes, Flag } from './enums'
+import { HeroService } from './services'
 
 const heroService = new HeroService()
 
