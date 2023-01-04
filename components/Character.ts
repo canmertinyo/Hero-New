@@ -1,9 +1,9 @@
 import { Classes, Flag } from '../enums'
 import { Item } from './index'
-import { RandomCityName } from '../services/city-generator'
-import { RandomFoodName } from '../json/food-generator'
-import { RandomCouponCode } from '../services'
+import { NameGenerator, RandomCouponCode } from '../services'
 import { randomItems } from '../main'
+import food from '../json/food.json'
+import cities from '../json/cities.json'
 import fs from 'fs'
 import readline from 'readline'
 
@@ -12,8 +12,7 @@ export abstract class Character {
   public classes?: Classes
   public randomIndex = Math.floor(Math.random() * 3)
   public randomCouponCode = new RandomCouponCode()
-  public randomCityName = new RandomCityName()
-  public randomFoodName = new RandomFoodName()
+  private nameGenerator = new NameGenerator()
 
   constructor(
     public name: string,
@@ -25,12 +24,12 @@ export abstract class Character {
   ) {}
 
   public eat(value: number): number | string {
-    const condition = !(this.maxFoodLevel - (value + this.foodLevel) <= -1)
-      ? (this.foodLevel += value)
-      : `hey adventurer, ${
-          this.name
-        } you can't eat anymore of this ${this.randomFoodName.generate()}! You reach the maximum capacity.`
-    return condition
+    if (this.maxFoodLevel - (value + this.foodLevel) <= -1) {
+      const foodName = this.nameGenerator.generate(food.foodItems, 'foodName')
+
+      return `hey adventurer, ${this.name} you can't eat anymore of this ${foodName}! You reach the maximum capacity.`
+    }
+    return (this.foodLevel += value)
   }
 
   public attack(character: Character): string | undefined {
@@ -39,8 +38,10 @@ export abstract class Character {
   }
 
   public move(status: boolean): string {
+    const cityName = this.nameGenerator.generate(cities, 'name')
+
     return status == true
-      ? `${this.name} is moving to ${this.randomCityName.generate()}`
+      ? `${this.name} is moving to ${cityName}`
       : `${this.name} is idling right now.`
   }
 
