@@ -6,20 +6,8 @@ import { Warrior } from './components/Warrior'
 import { Classes } from './enums/Classes'
 import { Flag } from './enums/Flag'
 import { HeroService } from './services/hero-service'
-import mysql from 'mysql'
 
 const heroService = new HeroService()
-
-const connectDatabase = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'smack1919'
-})
-
-connectDatabase.connect(function (err: Error) {
-  if (err) throw err
-  console.log('Connected!')
-})
 
 const shaman1 = new Shaman('yidu1', 200, 150, 0, 100, Flag.Chunjo)
 const archer1 = new Archer('archer', 200, 150, 0, 0, Flag.Shinso)
