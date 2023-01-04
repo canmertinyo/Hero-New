@@ -1,13 +1,24 @@
+import mongoose from 'mongoose'
 import { Archer, Item, Mage, Shaman, Warrior } from './components'
-import { connectToDatabase } from './database'
+import { main } from './database'
 import { Classes, Flag } from './enums'
 import { HeroService } from './services'
 
-connectToDatabase()
+main()
+const couponSchema = new mongoose.Schema({
+  coupon: String
+})
+const shaman1 = new Shaman('yidu1', 200, 150, 0, 100, Flag.Chunjo)
+
+const Coupon = mongoose.model('coupon', couponSchema)
+const coupon1 = new Coupon({ coupon: shaman1.createCoupon() })
+coupon1.save()
+
+const findAllCoupons = Coupon.find({ coupon: shaman1.createCoupon() })
+console.log(findAllCoupons)
 
 const heroService = new HeroService()
 
-const shaman1 = new Shaman('yidu1', 200, 150, 0, 100, Flag.Chunjo)
 const archer1 = new Archer('archer', 200, 150, 0, 0, Flag.Shinso)
 const warrior1 = new Warrior('ocean avenue', 200, 150, 0, 0, Flag.Chunjo)
 const mage1 = new Mage('stunning Mage', 100, 130, 140, 100, Flag.Jinnu)
