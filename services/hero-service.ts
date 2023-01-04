@@ -1,6 +1,6 @@
-import { Character } from '../components/Character'
-import { Classes } from '../enums/Classes'
-import { Flag } from '../enums/Flag'
+import { Character } from '../components/character'
+import { Classes } from '../enums/classes'
+import { Flag } from '../enums/flag'
 
 export class HeroService {
   public characters: Character[] = []
