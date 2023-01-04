@@ -1,6 +1,9 @@
 import { Archer, Item, Mage, Shaman, Warrior } from './components'
+import { connectToDatabase } from './database'
 import { Classes, Flag } from './enums'
 import { HeroService } from './services'
+
+connectToDatabase()
 
 const heroService = new HeroService()
 
