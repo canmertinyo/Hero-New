@@ -1,5 +1,5 @@
-import { Classes } from "../enums/Classes";
+import { Classes } from '../enums/Classes'
 
 export class Item {
-    constructor(public itemName:string, public classes:Classes, public itemId:number) {}
+  constructor(public itemName: string, public classes: Classes, public itemId: number) {}
 }

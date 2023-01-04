@@ -1,8 +1,8 @@
-import food from "../json/food.json";
+import food from '../json/food.json'
 
 export class RandomFoodName {
-    public generate() {
-        let random =  Math.floor(Math.random() * food.foodItems.length);
-        return food.foodItems[random].foodName;
-    }
+  public generate(): string {
+    const random = Math.floor(Math.random() * food.foodItems.length)
+    return food.foodItems[random].foodName
+  }
 }

@@ -1,13 +1,19 @@
-import { Classes } from "../enums/Classes";
-import { Flag } from "../enums/Flag";
-import { Character } from "./Character";
+import { Classes } from '../enums/Classes'
+import { Flag } from '../enums/Flag'
+import { Character } from './Character'
 
 export class Warrior extends Character {
+  public classes?: Classes
 
-    public classes?:Classes
-    
-    constructor(public name: string, public level: number, public maxFoodLevel: number, public foodLevel: number, public health:number , public flag:Flag) {
-        super(name,level,maxFoodLevel,foodLevel,health,flag);
-        this.classes = Classes.Warrior;
-    };
+  constructor(
+    public name: string,
+    public level: number,
+    public maxFoodLevel: number,
+    public foodLevel: number,
+    public health: number,
+    public flag: Flag
+  ) {
+    super(name, level, maxFoodLevel, foodLevel, health, flag)
+    this.classes = Classes.Warrior
+  }
 }
