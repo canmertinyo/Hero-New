@@ -1,15 +1,9 @@
-import mongoose from 'mongoose'
 import { Archer, Item, Mage, Shaman, Warrior } from './components'
-import { main } from './database'
 import { Classes, Flag } from './enums'
 import { HeroService } from './services'
-import { Coupon, couponSchema } from './database/schemas/coupon'
-
-main()
 
 const shaman1 = new Shaman('yidu1', 200, 150, 0, 100, Flag.Chunjo)
 
-shaman1.createCoupon('adsasdadsdas')
 const heroService = new HeroService()
 
 const archer1 = new Archer('archer', 200, 150, 0, 0, Flag.Shinso)
@@ -37,3 +31,5 @@ warrior1.addItem(bigSword)
 shaman1.addItem(mageBigStaff)
 
 console.log(warrior1.move(true))
+shaman1.createCoupon('asdasdjasdjhkads')
+shaman1.getAllCoupons()

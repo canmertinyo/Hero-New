@@ -5,6 +5,8 @@ import { randomItems } from '../main'
 import food from '../json/food.json'
 import cities from '../json/cities.json'
 import { Coupon, couponSchema } from '../database/schemas/coupon'
+import { connectToDatabase } from '../database/index'
+import mongoose from 'mongoose'
 
 export abstract class Character {
   public inventory: Item[] = []
@@ -72,12 +74,11 @@ export abstract class Character {
     }
   }
 
-  public createCoupon(_coupon: string): void {
-    Coupon.create({
-      coupon: _coupon
-    }).then((result) => {
-      console.log(result)
-    })
+  public async createCoupon(_coupon: string): Promise<void> {
+    connectToDatabase()
+    const coupon = new Coupon({ coupon: _coupon })
+    console.log('coupon has been created...')
+    await coupon.save()
     // const couponTxt = '../json/coupon-codes.txt'
     // const read = readline.createInterface({
     //   input: fs.createReadStream(couponTxt)
@@ -89,5 +90,8 @@ export abstract class Character {
     //     console.log(this.inventory)
     //   }
     // })
+  }
+  public async getAllCoupons(): Promise<void> {
+    await Coupon.find()
   }
 }
