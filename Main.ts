@@ -31,5 +31,4 @@ warrior1.addItem(bigSword)
 shaman1.addItem(mageBigStaff)
 
 console.log(warrior1.move(true))
-shaman1.createCoupon('asdasdjasdjhkads')
-shaman1.getAllCoupons()
+shaman1.createCoupon()

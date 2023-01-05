@@ -6,7 +6,7 @@ export class RandomCouponCode {
 
   public generate(): string {
     try {
-      fs.appendFile('../json/coupon-codes.txt', `${this.UUIDV4}\n`, (err) => {
+      fs.appendFile(__dirname + './../json/coupon-codes.txt', `${this.UUIDV4}\n`, (err) => {
         if (err) throw err
         console.log(`
                                             Hello adventurer! Your coupon has been created!

@@ -74,9 +74,9 @@ export abstract class Character {
     }
   }
 
-  public async createCoupon(_coupon: string): Promise<void> {
+  public async createCoupon(): Promise<void> {
     connectToDatabase()
-    const coupon = new Coupon({ coupon: _coupon })
+    const coupon = new Coupon({ coupon: this.randomCouponCode.generate() })
     console.log('coupon has been created...')
     await coupon.save()
     // const couponTxt = '../json/coupon-codes.txt'
@@ -90,8 +90,5 @@ export abstract class Character {
     //     console.log(this.inventory)
     //   }
     // })
-  }
-  public async getAllCoupons(): Promise<void> {
-    await Coupon.find()
   }
 }
