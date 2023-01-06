@@ -23,8 +23,11 @@ async function run(): Promise<void> {
   warrior1.addItem(bigSword)
   shaman1.addItem(mageBigStaff)
   console.log(warrior1.move(true))
-  await shaman1.createCoupon()
-  await shaman1.logAllCoupons()
+  await mage1.createCoupon()
+  await archer1.createCoupon()
+
+  await mage1.logAllCoupons()
+  await warrior1.createCoupon()
 }
 
 run()

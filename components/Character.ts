@@ -4,7 +4,7 @@ import { NameGenerator, RandomCouponCode } from '../services'
 import food from '../json/food.json'
 import cities from '../json/cities.json'
 import { Coupon } from '../database/schemas/coupon'
-import mongoose from 'mongoose'
+import { Document } from 'mongoose'
 
 export abstract class Character {
   public inventory: Item[] = []
@@ -72,14 +72,16 @@ export abstract class Character {
     }
   }
 
-  public async createCoupon(): Promise<void> {
+  public async createCoupon(): Promise<Document> {
     const generateCouponCode = this.randomCouponCode.generate()
-    await Coupon.create({
-      coupon: generateCouponCode
+    const result: Document = await Coupon.create({
+      coupon: generateCouponCode,
+      ownedBy: this.name
     })
+    return result
   }
 
   public async logAllCoupons(): Promise<unknown> {
-    return Coupon.find({})
+    return Coupon.find({ ownedBy: this.name })
   }
 }
