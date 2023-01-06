@@ -6,5 +6,5 @@ export function connectToDatabase(): void {
   mongoose
     .connect(config.DATABASE_URI)
     .then(() => console.log('Connected to the database.'))
-    .catch(() => console.log('An error occurred while connecting to the database.'))
+    .catch((err) => console.log('An error occurred while connecting to the database.' + err))
 }
