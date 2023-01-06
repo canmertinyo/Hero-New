@@ -4,6 +4,7 @@ import { NameGenerator, RandomCouponCode } from '../services'
 import food from '../json/food.json'
 import cities from '../json/cities.json'
 import { Coupon } from '../database/schemas/coupon'
+import mongoose from 'mongoose'
 
 export abstract class Character {
   public inventory: Item[] = []
@@ -78,7 +79,7 @@ export abstract class Character {
     })
   }
 
-  public async logAllCoupons(): Promise<void> {
-    Coupon.find({})
+  public async logAllCoupons(): Promise<unknown> {
+    return Coupon.find({})
   }
 }

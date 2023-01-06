@@ -4,7 +4,7 @@ import { Classes, Flag } from './enums'
 import { HeroService } from './services'
 
 async function run(): Promise<void> {
-  await connectToDatabase()
+  connectToDatabase()
   const shaman1 = new Shaman('yidu1', 200, 150, 0, 100, Flag.Chunjo)
   const heroService = new HeroService()
   const archer1 = new Archer('archer', 200, 150, 0, 0, Flag.Shinso)
