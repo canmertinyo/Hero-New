@@ -456,14 +456,6 @@
     "region": "Karadeniz"
   },
   {
-    "id": 58,
-    "name": "Sivas",
-    "latitude": "39.7477",
-    "longitude": "37.0179",
-    "population": 618617,
-    "region": "İç Anadolu"
-  },
-  {
     "id": 59,
     "name": "Tekirdağ",
     "latitude": "40.9833",

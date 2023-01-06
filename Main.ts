@@ -28,6 +28,12 @@ async function run(): Promise<void> {
 
   await mage1.logAllCoupons()
   await warrior1.createCoupon()
+
+  await mage1.createCoupon()
+  await mage1.createCoupon()
+  await mage1.createCoupon()
+  await mage1.createCoupon()
+  await mage1.createCoupon()
 }
 
 run()
