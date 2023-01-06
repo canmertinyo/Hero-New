@@ -1,12 +1,9 @@
 import { Classes, Flag } from '../enums'
 import { Item } from './index'
 import { NameGenerator, RandomCouponCode } from '../services'
-import { randomItems } from '../main'
 import food from '../json/food.json'
 import cities from '../json/cities.json'
-import { Coupon, couponSchema } from '../database/schemas/coupon'
-import { connectToDatabase } from '../database/index'
-import mongoose from 'mongoose'
+import { Coupon } from '../database/schemas/coupon'
 
 export abstract class Character {
   public inventory: Item[] = []
@@ -75,20 +72,13 @@ export abstract class Character {
   }
 
   public async createCoupon(): Promise<void> {
-    connectToDatabase()
-    const coupon = new Coupon({ coupon: this.randomCouponCode.generate() })
-    console.log('coupon has been created...')
-    await coupon.save()
-    // const couponTxt = '../json/coupon-codes.txt'
-    // const read = readline.createInterface({
-    //   input: fs.createReadStream(couponTxt)
-    // })
-    // read.on('line', (text: string) => {
-    //   if (text === coupon) {
-    //     this.addItem(randomItems[this.randomIndex])
-    //     console.log(`${randomItems[this.randomIndex]} has been added to your inventory.`)
-    //     console.log(this.inventory)
-    //   }
-    // })
+    const generateCouponCode = this.randomCouponCode.generate()
+    await Coupon.create({
+      coupon: generateCouponCode
+    })
+  }
+
+  public async logAllCoupons(): Promise<void> {
+    Coupon.find({})
   }
 }

@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import { Character } from '../../components'
 
 export const couponSchema = new mongoose.Schema({
   coupon: String
