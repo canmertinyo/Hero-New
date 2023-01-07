@@ -5,8 +5,9 @@ import food from '../json/food.json'
 import cities from '../json/cities.json'
 import { Coupon } from '../database/schemas/coupon'
 import { Document } from 'mongoose'
+import { ICharacter } from '../interfaces/character-interface'
 
-export abstract class Character {
+export abstract class Character implements ICharacter {
   public inventory: Item[] = []
   public classes?: Classes
   public randomIndex = Math.floor(Math.random() * 3)
