@@ -7,34 +7,28 @@ import { Coupon } from '../database/schemas/coupon'
 import { Document } from 'mongoose'
 import { ICharacter } from '../interfaces/character-interface'
 
-export abstract class Character implements ICharacter {
+export abstract class Character {
   public inventory: Item[] = []
   public classes?: Classes
   public randomIndex = Math.floor(Math.random() * 3)
   public randomCouponCode = new RandomCouponCode()
   private nameGenerator = new NameGenerator()
 
-  constructor(
-    public name: string,
-    public level: number,
-    public maxFoodLevel: number,
-    public foodLevel: number,
-    public health: number,
-    public flag: Flag
-  ) {}
+  constructor(public options: ICharacter) {}
+
 
   public eat(value: number): number | string {
-    if (this.maxFoodLevel - (value + this.foodLevel) <= -1) {
+    if (this.options.maxFoodLevel - (value + this.options.foodLevel) <= -1) {
       const foodName = this.nameGenerator.generate(food.foodItems, 'foodName')
 
-      return `hey adventurer, ${this.name} you can't eat anymore of this ${foodName}! You reach the maximum capacity.`
+      return `hey adventurer, ${this.options.name} you can't eat anymore of this ${foodName}! You reach the maximum capacity.`
     }
-    return (this.foodLevel += value)
+    return (this.options.foodLevel += value)
   }
 
   public attack(character: Character): string | undefined {
     if (!character) return
-    console.log(`${this.name} is attacking to ${character.name}`)
+    console.log(`${this.options.name} is attacking to ${character.name}`)
   }
 
   public move(status: boolean): string {
