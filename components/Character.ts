@@ -1,4 +1,4 @@
-import { Classes, Flag } from '../enums'
+import { Classes } from '../enums'
 import { Item } from './index'
 import { NameGenerator, RandomCouponCode } from '../services'
 import food from '../json/food.json'
@@ -44,6 +44,7 @@ export abstract class Character {
   }
 
   public respawn(): void {
+    //void denmiş ama return ile değer dönmüşüm. Onları düzelt
     if (this.options.health <= 0) {
       let timer = 6
       const mainInterval: NodeJS.Timer = setInterval(() => {
@@ -55,7 +56,7 @@ export abstract class Character {
         }
       }, 1000)
     } else {
-      console.log(`${this.options.name} is alive!`)
+      return console.log(`${this.options.name} is alive!`)
     }
   }
 

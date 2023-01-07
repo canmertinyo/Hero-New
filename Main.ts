@@ -5,35 +5,56 @@ import { HeroService } from './services'
 
 async function run(): Promise<void> {
   connectToDatabase()
-  const shaman1 = new Shaman('yidu1', 200, 150, 0, 100, Flag.Chunjo)
+  const shaman1 = new Shaman(
+    (Shaman.prototype.options = {
+      name: 'can',
+      level: 200,
+      maxFoodLevel: 150,
+      foodLevel: 0,
+      flag: Flag.Shinso,
+      health: 100
+    })
+  )
+  const archer = new Archer(
+    (Archer.prototype.options = {
+      name: 'archer1',
+      level: 200,
+      maxFoodLevel: 150,
+      foodLevel: 0,
+      flag: Flag.Shinso,
+      health: 100
+    })
+  )
+  const mage = new Mage(
+    (Mage.prototype.options = {
+      name: 'mage',
+      level: 200,
+      maxFoodLevel: 150,
+      foodLevel: 0,
+      flag: Flag.Shinso,
+      health: 100
+    })
+  )
+
+  const warrior = new Warrior(
+    (Warrior.prototype.options = {
+      name: 'mage',
+      level: 200,
+      maxFoodLevel: 150,
+      foodLevel: 0,
+      flag: Flag.Shinso,
+      health: 100
+    })
+  )
   const heroService = new HeroService()
-  const archer1 = new Archer('archer', 200, 150, 0, 0, Flag.Shinso)
-  const warrior1 = new Warrior('ocean avenue', 200, 150, 0, 0, Flag.Chunjo)
-  const mage1 = new Mage('stunning Mage', 100, 130, 140, 100, Flag.Jinnu)
   const bigSword = new Item('Big Two Handed Sword', Classes.Warrior, 238238)
   const longBow = new Item('Long Bow', Classes.Archer, 102023)
   const minBell = new Item('Antique Bell', Classes.Shaman, 238123)
   const mageBigStaff = new Item('Exclusive Staff', Classes.Shaman, 23892323)
   heroService.addCharacter(shaman1)
-  heroService.addCharacter(archer1)
-  heroService.addCharacter(warrior1)
-  heroService.addCharacter(mage1)
   shaman1.addItem(minBell)
-  archer1.addItem(longBow)
-  warrior1.addItem(bigSword)
   shaman1.addItem(mageBigStaff)
-  console.log(warrior1.move(true))
-  await mage1.createCoupon()
-  await archer1.createCoupon()
-
-  await mage1.logAllCoupons()
-  await warrior1.createCoupon()
-
-  await mage1.createCoupon()
-  await mage1.createCoupon()
-  await mage1.createCoupon()
-  await mage1.createCoupon()
-  await mage1.createCoupon()
+  console.log(shaman1.move(true))
 }
 
 run()

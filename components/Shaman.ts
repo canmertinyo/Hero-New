@@ -1,18 +1,12 @@
 import { Classes, Flag } from '../enums'
+import { ICharacter } from '../interfaces/character-interface'
 import { Character } from './index'
 
 export class Shaman extends Character {
   public classes?: Classes
 
-  constructor(
-    public name: string,
-    public level: number,
-    public maxFoodLevel: number,
-    public foodLevel: number,
-    public health: number,
-    public flag: Flag
-  ) {
-    super(name, level, maxFoodLevel, foodLevel, health, flag)
+  constructor(public options: ICharacter) {
+    super(options)
     this.classes = Classes.Shaman
   }
 }

@@ -14,7 +14,7 @@ export class HeroService {
 
   public logFlags(flag: Flag): Character[] {
     return this.characters.filter((hero) =>
-      hero.flag != flag ? null : JSON.stringify(hero, null, 4)
+      hero.options.flag != flag ? null : JSON.stringify(hero, null, 4)
     )
   }
 
