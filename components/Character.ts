@@ -16,7 +16,6 @@ export abstract class Character {
 
   constructor(public options: ICharacter) {}
 
-
   public eat(value: number): number | string {
     if (this.options.maxFoodLevel - (value + this.options.foodLevel) <= -1) {
       const foodName = this.nameGenerator.generate(food.foodItems, 'foodName')
@@ -28,35 +27,35 @@ export abstract class Character {
 
   public attack(character: Character): string | undefined {
     if (!character) return
-    console.log(`${this.options.name} is attacking to ${character.name}`)
+    console.log(`${this.options.name} is attacking to ${character.options.name}`)
   }
 
   public move(status: boolean): string {
     const cityName = this.nameGenerator.generate(cities, 'name')
 
     return status == true
-      ? `${this.name} is moving to ${cityName}`
-      : `${this.name} is idling right now.`
+      ? `${this.options.name} is moving to ${cityName}`
+      : `${this.options.name} is idling right now.`
   }
 
   public addItem(items: Item): number | string {
-    const result = `${items.itemName} succesfully added to ${this.name}'s inventory`
+    const result = `${items.itemName} succesfully added to ${this.options.name}'s inventory`
     return this.inventory.push(items), result
   }
 
   public respawn(): void {
-    if (this.health <= 0) {
+    if (this.options.health <= 0) {
       let timer = 6
       const mainInterval: NodeJS.Timer = setInterval(() => {
         timer--
-        console.log(`${this.name} is respawning in ${timer} seconds`)
+        console.log(`${this.options.name} is respawning in ${timer} seconds`)
         if (timer <= 0) {
-          console.log(`${this.name} is respawned.`)
-          return (this.health = 100), clearInterval(mainInterval)
+          console.log(`${this.options.name} is respawned.`)
+          return (this.options.health = 100), clearInterval(mainInterval)
         }
       }, 1000)
     } else {
-      console.log(`${this.name} is alive!`)
+      console.log(`${this.options.name} is alive!`)
     }
   }
 
@@ -71,12 +70,12 @@ export abstract class Character {
     const generateCouponCode = this.randomCouponCode.generate()
     const result: Document = await Coupon.create({
       coupon: generateCouponCode,
-      ownedBy: this.name
+      ownedBy: this.options.name
     })
     return result
   }
 
   public async logAllCoupons(): Promise<unknown> {
-    return Coupon.find({ ownedBy: this.name })
+    return Coupon.find({ ownedBy: this.options.name })
   }
 }
