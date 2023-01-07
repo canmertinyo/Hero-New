@@ -5,6 +5,16 @@ import { HeroService } from './services'
 
 async function run(): Promise<void> {
   connectToDatabase()
+  //Bu senin dediğin tarz ?
+  const shaman2 = new Shaman({
+    name: 'Furious',
+    level: 200,
+    maxFoodLevel: 200,
+    foodLevel: 0,
+    flag: Flag.Jinnu,
+    health: 15
+  })
+  //Bu kalıtım kullanılarak yapılan hali?
   const shaman1 = new Shaman(
     (Shaman.prototype.options = {
       name: 'can',
@@ -55,6 +65,12 @@ async function run(): Promise<void> {
   shaman1.addItem(minBell)
   shaman1.addItem(mageBigStaff)
   console.log(shaman1.move(true))
+
+  await shaman1.createCoupon()
+  await archer.createCoupon()
+  await mage.createCoupon()
+  await warrior.createCoupon()
+  await shaman2.createCoupon()
 }
 
 run()
