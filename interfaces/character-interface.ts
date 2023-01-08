@@ -6,5 +6,5 @@ export interface ICharacter {
   maxFoodLevel: number
   foodLevel: number
   health: number
-  flag: Flag
+  flag: string
 }

@@ -8,5 +8,5 @@ export const characterSchema = new mongoose.Schema<ICharacter>({
   maxFoodLevel: Number,
   foodLevel: Number,
   health: Number,
-  flag: Flag
+  flag: String
 })

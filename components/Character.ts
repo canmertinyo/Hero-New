@@ -3,9 +3,9 @@ import { Item } from './index'
 import { NameGenerator, RandomCouponCode } from '../services'
 import food from '../json/food.json'
 import cities from '../json/cities.json'
-import { Coupon } from '../database/schemas/coupon'
 import { Document } from 'mongoose'
 import { ICharacter } from '../interfaces/character-interface'
+import { Coupon } from '../database/models/coupon-model'
 
 export abstract class Character {
   public inventory: Item[] = []
@@ -43,20 +43,24 @@ export abstract class Character {
     return this.inventory.push(items), result
   }
 
-  public respawn(): void {
-    //void denmiş ama return ile değer dönmüşüm. Onları düzelt
-    if (this.options.health <= 0) {
-      let timer = 6
-      const mainInterval: NodeJS.Timer = setInterval(() => {
-        timer--
-        console.log(`${this.options.name} is respawning in ${timer} seconds`)
-        if (timer <= 0) {
-          console.log(`${this.options.name} is respawned.`)
-          return (this.options.health = 100), clearInterval(mainInterval)
-        }
-      }, 1000)
-    } else {
-      return console.log(`${this.options.name} is alive!`)
+  public respawn(): number | unknown {
+    try {
+      if (this.options.health <= 0) {
+        let timer = 6
+        const mainInterval: NodeJS.Timer = setInterval(() => {
+          timer--
+          console.log(`${this.options.name} is respawning in ${timer} seconds`)
+          if (timer <= 0) {
+            console.log(`${this.options.name} is respawned.`)
+            clearInterval(mainInterval)
+            return (this.options.health = 100)
+          }
+        }, 1000)
+      } else {
+        return `${this.options.name} is alive!`
+      }
+    } catch (error: unknown) {
+      console.log(error)
     }
   }
 

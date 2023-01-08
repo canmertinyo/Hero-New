@@ -1,8 +1,4 @@
 import mongoose from 'mongoose'
-
-export const couponSchema = new mongoose.Schema({
-  coupon: String,
-  ownedBy: String
-})
+import { couponSchema } from '../schemas/coupon-schema'
 
 export const Coupon = mongoose.model('coupon', couponSchema)
