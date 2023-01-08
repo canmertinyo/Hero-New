@@ -1,5 +1,7 @@
 import { Character } from '../components'
+import { characterModel } from '../database/models/character-models'
 import { Classes, Flag } from '../enums'
+import { Document } from 'mongoose'
 
 export class HeroService {
   public characters: Character[] = []
@@ -22,5 +24,17 @@ export class HeroService {
     console.log(
       this.characters.filter((hero) => (hero.classes != heroType ? null : JSON.stringify(hero)))
     )
+  }
+
+  public async addCharacterToDatabase(character: Character): Promise<Document> {
+    const result: Document = await characterModel.create({
+      name: character.options.name,
+      level: character.options.level,
+      maxFoodLevel: character.options.maxFoodLevel,
+      foodLevel: character.options.foodLevel,
+      health: character.options.health,
+      flag: character.options.flag
+    })
+    return result
   }
 }
