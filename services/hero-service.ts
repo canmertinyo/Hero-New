@@ -26,15 +26,8 @@ export class HeroService {
     )
   }
 
-  public async addCharacterToDatabase(character: Character): Promise<Document> {
-    const result: Document = await characterModel.create({
-      name: character.options.name,
-      level: character.options.level,
-      maxFoodLevel: character.options.maxFoodLevel,
-      foodLevel: character.options.foodLevel,
-      health: character.options.health,
-      flag: character.options.flag
-    })
+  public async createCharacter(character: Character): Promise<Document> {
+    const result: Document = await characterModel.create({ ...character.options })
     return result
   }
 }

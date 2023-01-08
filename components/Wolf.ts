@@ -9,6 +9,4 @@ export class Wolf extends Character {
     super(options)
     this.classes = Classes.Wolf
   }
-    this.classes = Classes.Wolf
-
 }
