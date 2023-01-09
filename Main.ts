@@ -46,14 +46,6 @@ async function run(): Promise<void> {
     flag: Flag.Shinso,
     health: 100
   })
-  const warrior1 = new Warrior({
-    name: 'warrior1',
-    level: 200,
-    maxFoodLevel: 150,
-    foodLevel: 0,
-    flag: Flag.Shinso,
-    health: 100
-  })
   const heroService = new HeroService()
   const bigSword = new Item('Big Two Handed Sword', Classes.Warrior, 238238)
   const longBow = new Item('Long Bow', Classes.Archer, 102023)
@@ -77,7 +69,10 @@ async function run(): Promise<void> {
   // await mage.createCoupon()
   // await warrior.createCoupon()
   // await shaman2.createCoupon()
-  await heroService.createCharacter(warrior1)
+
+  // await heroService.createCharacter(mage)
+  await heroService.createCharacter(warrior)
+
 }
 
 //trigger all components :

@@ -3,6 +3,7 @@
     "dotenv": "^16.0.3",
     "mongodb": "^4.13.0",
     "mongoose": "^6.8.2",
+    "typescript": "^4.9.4",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
