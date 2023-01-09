@@ -1,4 +1,14 @@
-//Özel bir kod üretilecek ve bu kodu fonksiyon ile çağıracağız.
-Bu rastgele bir eşyayı hangi kullanıcı girdiyse onun envanterine ekleyecek.
-ve bu kod bir kere kullanılacak ve kullanılan kodlar bir txt dosyasına kayıt edilecek 
+yeni tip errorlar oluşturmak.
 
+
+export abstract class CustomError extends Error{
+    abstract statusCode: number;
+    constructor(message: string){
+        super(message);
+        Object.setPrototypeOf(this, CustomError.prototype);
+    }
+    abstract serializeErrors(): {
+        message: string,
+        field?: string
+    } [];
+}
