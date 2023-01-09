@@ -2,6 +2,8 @@ import { Character } from '../components'
 import { characterModel } from '../database/models/character-models'
 import { Classes, Flag } from '../enums'
 import { Document } from 'mongoose'
+import {ErrorList} from '../enums/exception-list'
+import { DuplicatedUsername } from '../exceptions/duplicated-character'
 
 export class HeroService {
   public characters: Character[] = []
@@ -26,8 +28,16 @@ export class HeroService {
     )
   }
 
-  public async createCharacter(character: Character): Promise<Document> {
-    const result: Document = await characterModel.create({ ...character.options })
-    return result
+  public async createCharacter(character: Character): Promise<any> {
+     (await characterModel.find()).filter(fn => {
+      if(fn.name === character.options.name) {
+         throw new DuplicatedUsername(ErrorList.DUPLICATED_CHARACTER)
+      } else {
+        
+      }
+    })
+    const result: Document = await characterModel.create({...character.options})
+        return result
   }
+  
 }
