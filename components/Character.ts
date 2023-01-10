@@ -3,20 +3,22 @@ import { Item } from './index'
 import { NameGenerator, RandomCouponCode } from '../services'
 import food from '../json/food.json'
 import cities from '../json/cities.json'
-import { Document } from 'mongoose'
 import { ICharacter } from '../interfaces/character-interface'
 import { Coupon } from '../database/models/coupon-model'
+import { ICoupon } from '../interfaces/coupon-interface'
+
+// joi
 
 export abstract class Character {
   public inventory: Item[] = []
-  public classes?: Classes
-  public randomIndex = Math.floor(Math.random() * 3)
+  public classes?: Classes //ChracterType
   public randomCouponCode = new RandomCouponCode()
   private nameGenerator = new NameGenerator()
 
   constructor(public options: ICharacter) {}
 
   public eat(value: number): number | string {
+    // burayı düzelt
     if (this.options.maxFoodLevel - (value + this.options.foodLevel) <= -1) {
       const foodName = this.nameGenerator.generate(food.foodItems, 'foodName')
 
@@ -33,7 +35,7 @@ export abstract class Character {
   public move(status: boolean): string {
     const cityName = this.nameGenerator.generate(cities, 'name')
 
-    return status == true
+    return status
       ? `${this.options.name} is moving to ${cityName}`
       : `${this.options.name} is idling right now.`
   }
@@ -43,25 +45,24 @@ export abstract class Character {
     return this.inventory.push(items), result
   }
 
-  public respawn(): number | unknown {
-    try {
-      if (this.options.health <= 0) {
-        let timer = 6
-        const mainInterval: NodeJS.Timer = setInterval(() => {
-          timer--
-          console.log(`${this.options.name} is respawning in ${timer} seconds`)
-          if (timer <= 0) {
-            console.log(`${this.options.name} is respawned.`)
-            clearInterval(mainInterval)
-            return (this.options.health = 100)
-          }
-        }, 1000)
-      } else {
-        return `${this.options.name} is alive!`
+  public respawn(): void {
+    if (this.options.health > 0) return
+
+    let timer = 6
+
+    const executeTimer = (): void => {
+      timer--
+      console.log(`${this.options.name} is respawning in ${timer} seconds`)
+
+      if (timer <= 0) {
+        console.log(`${this.options.name} is respawned.`)
+        clearInterval(mainInterval)
+        this.options.health = 100
+        return
       }
-    } catch (error: unknown) {
-      console.log(error)
     }
+
+    const mainInterval: NodeJS.Timer = setInterval(executeTimer, 1000)
   }
 
   public deleteItem(itemId: Item): void {
@@ -71,16 +72,16 @@ export abstract class Character {
     }
   }
 
-  public async createCoupon(): Promise<Document> {
-    const generateCouponCode = this.randomCouponCode.generate()
-    const result: Document = await Coupon.create({
-      coupon: generateCouponCode,
+  public async createCoupon(): Promise<ICoupon> {
+    const couponCode = this.randomCouponCode.generate()
+    const result = await Coupon.create({
+      coupon: couponCode,
       ownedBy: this.options.name
     })
     return result
   }
 
-  public async logAllCoupons(): Promise<unknown> {
+  public async logAllCoupons(): Promise<ICoupon[]> {
     return Coupon.find({ ownedBy: this.options.name })
   }
 }

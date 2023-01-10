@@ -1,8 +1,5 @@
-
-
-export abstract class CreateError extends Error {
-    constructor(public errorMessage:string) {
-        super(errorMessage)
-    }
+export class BaseException extends Error {
+  constructor(public errorMessage: string) {
+    super(errorMessage)
+  }
 }
-

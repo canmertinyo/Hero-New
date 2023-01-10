@@ -1,5 +1,3 @@
-import { Flag } from '../enums'
-
 export interface ICharacter {
   name: string
   level: number

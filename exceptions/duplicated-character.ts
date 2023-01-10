@@ -1,8 +1,7 @@
-import { CreateError } from '../exceptions/base-exception'
+import { BaseException } from '../exceptions/base-exception'
 
-export class DuplicatedUsername extends CreateError {
-    constructor(public errorMessage:string) {
-        super(errorMessage)
-    }
+export class DuplicatedUsernameException extends BaseException {
+  constructor() {
+    super('Duplicated user!')
+  }
 }
-
