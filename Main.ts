@@ -62,6 +62,15 @@ async function run(): Promise<void> {
     health: 15,
     inventory: []
   })
+  const sivasliSerkan = new Warrior({
+    name: 'karizma boy',
+    level: 31,
+    maxFoodLevel: 31,
+    foodLevel: 31,
+    flag: Flag.Chunjo,
+    health: 0,
+    inventory: []
+  })
   const heroService = new HeroService()
   const bigSword = new Item('Big Two Handed Sword', CharacterType.Warrior, 238238)
   const longBow = new Item('Long Bow', CharacterType.Archer, 102023)
@@ -71,8 +80,10 @@ async function run(): Promise<void> {
   shaman1.addItem(mageBigStaff)
   warrior.addItem(bigSword)
   archer.addItem(longBow)
+  // await heroService.createCharacter(shaman2)
   // await heroService.createCharacter(warrior)
-  heroService.logAllCharacters()
+  // await heroService.createCharacter(sivasliSerkan)
+  await heroService.logAllCharacters()
 }
 
 //trigger all components :

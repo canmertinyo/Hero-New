@@ -7,8 +7,8 @@ import { ICharacter } from '../interfaces/character-interface'
 export class HeroService {
   public characters: Character[] = []
 
-  public logAllCharacters(): void {
-    console.log(characterModel.find().select('name'))
+  public async logAllCharacters(): Promise<void> {
+    console.log(await characterModel.find({}).select('name level flag'))
   }
 
   public logFlags(flag: Flag): Character[] {
