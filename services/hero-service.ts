@@ -1,7 +1,7 @@
 import { Character } from '../components'
 import { characterModel } from '../database/models/character-models'
-import { Classes, Flag } from '../enums'
-import { DuplicatedUsernameException } from '../exceptions/duplicated-character'
+import { CharacterType, Flag } from '../enums'
+import { DuplicatedUsernameException } from '../exceptions/duplicated-character-exception'
 import { ICharacter } from '../interfaces/character-interface'
 
 export class HeroService {
@@ -17,9 +17,11 @@ export class HeroService {
     )
   }
 
-  public logSpecificClass(heroType: Classes): void {
+  public logSpecificClass(heroType: CharacterType): void {
     console.log(
-      this.characters.filter((hero) => (hero.classes != heroType ? null : JSON.stringify(hero)))
+      this.characters.filter((hero) =>
+        hero.characterType != heroType ? null : JSON.stringify(hero)
+      )
     )
   }
 

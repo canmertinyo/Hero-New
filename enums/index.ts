@@ -1,2 +1,2 @@
-export * from './classes'
+export * from './character-type'
 export * from './flag'
