@@ -1,4 +1,4 @@
-import { Archer, Item, Mage, Shaman, Warrior } from './components'
+import { Archer, Character, Item, Mage, Shaman, Warrior } from './components'
 import { connectToDatabase } from './database'
 import { CharacterType, Flag } from './enums/'
 import { HeroService } from './services'
@@ -84,7 +84,8 @@ async function run(): Promise<void> {
   // await heroService.createCharacter(warrior)
   // await heroService.createCharacter(sivasliSerkan)
   // await heroService.logAllCharacters()
-  await heroService.logFlags(Flag.Chunjo)
+  // await heroService.logFlags(Flag.Chunjo)
+  await heroService.logSpecificClass(CharacterType.Shaman)
 }
 
 //trigger all components :

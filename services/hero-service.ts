@@ -12,15 +12,11 @@ export class HeroService {
   }
 
   public async logFlags(flag: Flag): Promise<void> {
-    console.log(await characterModel.find({ flag: flag }))
+    console.log(await characterModel.findOne({ flag: flag }))
   }
 
-  public logSpecificClass(heroType: CharacterType): void {
-    console.log(
-      this.characters.filter((hero) =>
-        hero.characterType != heroType ? null : JSON.stringify(hero)
-      )
-    )
+  public async logSpecificClass(characterType: CharacterType): Promise<void> {
+    console.log(await characterModel.findOne({ character: characterType }))
   }
 
   public async createCharacter(character: Character): Promise<ICharacter> {
