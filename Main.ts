@@ -83,7 +83,8 @@ async function run(): Promise<void> {
   // await heroService.createCharacter(shaman2)
   // await heroService.createCharacter(warrior)
   // await heroService.createCharacter(sivasliSerkan)
-  await heroService.logAllCharacters()
+  // await heroService.logAllCharacters()
+  await heroService.logFlags(Flag.Chunjo)
 }
 
 //trigger all components :

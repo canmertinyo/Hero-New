@@ -11,10 +11,8 @@ export class HeroService {
     console.log(await characterModel.find({}).select('name level flag'))
   }
 
-  public logFlags(flag: Flag): Character[] {
-    return this.characters.filter((hero) =>
-      hero.options.flag != flag ? null : JSON.stringify(hero, null, 4)
-    )
+  public async logFlags(flag: Flag): Promise<void> {
+    console.log(await characterModel.find({ flag: flag }))
   }
 
   public logSpecificClass(heroType: CharacterType): void {
