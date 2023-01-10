@@ -8,7 +8,7 @@ export class HeroService {
   public characters: Character[] = []
 
   public logAllCharacters(): void {
-    return this.characters.forEach((hero) => console.log(hero))
+    console.log(characterModel.find().select('name'))
   }
 
   public logFlags(flag: Flag): Character[] {

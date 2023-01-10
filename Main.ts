@@ -71,7 +71,8 @@ async function run(): Promise<void> {
   shaman1.addItem(mageBigStaff)
   warrior.addItem(bigSword)
   archer.addItem(longBow)
-  await heroService.createCharacter(warrior)
+  // await heroService.createCharacter(warrior)
+  heroService.logAllCharacters()
 }
 
 //trigger all components :
