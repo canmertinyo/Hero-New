@@ -2,7 +2,7 @@ import { Character } from '../components'
 import { characterModel } from '../database/models/character-models'
 import { CharacterType, Flag } from '../enums'
 import { DuplicatedUsernameException } from '../exceptions/duplicated-character-exception'
-import { ICharacter } from '../interfaces/character-interface'
+import { ICharacter } from '../interfaces/character.interface'
 
 export class HeroService {
   public characters: Character[] = []

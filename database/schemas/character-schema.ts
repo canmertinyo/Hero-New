@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import { Flag } from '../../enums'
-import { ICharacter } from '../../interfaces/character-interface'
+import { ICharacter } from '../../interfaces/character.interface'
 
 export const characterSchema = new mongoose.Schema<ICharacter>({
   name: String,

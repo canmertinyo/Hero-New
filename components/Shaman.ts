@@ -1,5 +1,5 @@
 import { CharacterType, Flag } from '../enums'
-import { ICharacter } from '../interfaces/character-interface'
+import { ICharacter } from '../interfaces/character.interface'
 import { Character } from './index'
 
 export class Shaman extends Character {
