@@ -1,28 +1,31 @@
-import { Classes } from '../enums'
+import { CharacterType } from '../enums'
 import { Item } from './index'
 import { NameGenerator, RandomCouponCode } from '../services'
 import food from '../json/food.json'
 import cities from '../json/cities.json'
-import { Document } from 'mongoose'
 import { ICharacter } from '../interfaces/character-interface'
 import { Coupon } from '../database/models/coupon-model'
+import { ICoupon } from '../interfaces/coupon-interface'
+
+// joi
 
 export abstract class Character {
-  public inventory: Item[] = []
-  public classes?: Classes
-  public randomIndex = Math.floor(Math.random() * 3)
-  public randomCouponCode = new RandomCouponCode()
+  protected characterType?: CharacterType
+  private randomCouponCode = new RandomCouponCode()
   private nameGenerator = new NameGenerator()
 
-  constructor(public options: ICharacter) {}
+  constructor(public options: ICharacter) {
+    options.inventory = [] //undefined olmaması için burada initialize edildi.
+  }
 
   public eat(value: number): number | string {
-    if (this.options.maxFoodLevel - (value + this.options.foodLevel) <= -1) {
+    const currentFoodLevelCalculation =
+      this.options.maxFoodLevel - Number(value + this.options.foodLevel <= -1)
+    if (currentFoodLevelCalculation) {
       const foodName = this.nameGenerator.generate(food.foodItems, 'foodName')
-
       return `hey adventurer, ${this.options.name} you can't eat anymore of this ${foodName}! You reach the maximum capacity.`
     }
-    return (this.options.foodLevel += value)
+    return +(this.options.foodLevel += value)
   }
 
   public attack(character: Character): string | undefined {
@@ -33,54 +36,55 @@ export abstract class Character {
   public move(status: boolean): string {
     const cityName = this.nameGenerator.generate(cities, 'name')
 
-    return status == true
+    return status
       ? `${this.options.name} is moving to ${cityName}`
       : `${this.options.name} is idling right now.`
   }
 
-  public addItem(items: Item): number | string {
-    const result = `${items.itemName} succesfully added to ${this.options.name}'s inventory`
-    return this.inventory.push(items), result
+  //bu kısım database'e aktarılacak array tabanlı calısma yok artık.
+  // public addItem(items: Item): string {
+  //   const result = `${items.itemName} succesfully added to ${this.options.name}'s inventory`
+  //   this.options.inventory.push(items)
+  //   return result
+  // }
+
+  public logAllItems(): Item[] {
+    return this.options.inventory
   }
 
-  public respawn(): number | unknown {
-    try {
-      if (this.options.health <= 0) {
-        let timer = 6
-        const mainInterval: NodeJS.Timer = setInterval(() => {
-          timer--
-          console.log(`${this.options.name} is respawning in ${timer} seconds`)
-          if (timer <= 0) {
-            console.log(`${this.options.name} is respawned.`)
-            clearInterval(mainInterval)
-            return (this.options.health = 100)
-          }
-        }, 1000)
-      } else {
-        return `${this.options.name} is alive!`
+  public respawn(): void {
+    if (this.options.health > 0) return
+    let timer = 6
+    const executeTimer = (): void => {
+      timer--
+      console.log(`${this.options.name} is respawning in ${timer} seconds`)
+      if (timer <= 0) {
+        console.log(`${this.options.name} is respawned.`)
+        clearInterval(mainInterval)
+        this.options.health = 100
+        return
       }
-    } catch (error: unknown) {
-      console.log(error)
     }
+    const mainInterval: NodeJS.Timer = setInterval(executeTimer, 1000)
   }
 
   public deleteItem(itemId: Item): void {
-    const findIndex = this.inventory.indexOf(itemId)
-    if (findIndex > -1) {
-      this.inventory.splice(findIndex, 1)
-    }
+    const findIndex = this.options.inventory.indexOf(itemId)
+    const deleteItemFromSpecificIndex =
+      findIndex > -1 ? this.options.inventory.splice(findIndex, 1) : null
+    deleteItemFromSpecificIndex
   }
 
-  public async createCoupon(): Promise<Document> {
-    const generateCouponCode = this.randomCouponCode.generate()
-    const result: Document = await Coupon.create({
-      coupon: generateCouponCode,
+  public async createCoupon(): Promise<ICoupon> {
+    const couponCode = this.randomCouponCode.generate()
+    const result = await Coupon.create({
+      coupon: couponCode,
       ownedBy: this.options.name
     })
     return result
   }
 
-  public async logAllCoupons(): Promise<unknown> {
+  public async logAllCoupons(): Promise<ICoupon[]> {
     return Coupon.find({ ownedBy: this.options.name })
   }
 }

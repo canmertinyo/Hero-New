@@ -1,6 +1,6 @@
 import { Archer, Item, Mage, Shaman, Warrior } from './components'
 import { connectToDatabase } from './database'
-import { Classes, Flag } from './enums'
+import { CharacterType, Flag } from './enums/'
 import { HeroService } from './services'
 
 async function run(): Promise<void> {
@@ -11,7 +11,8 @@ async function run(): Promise<void> {
     maxFoodLevel: 200,
     foodLevel: 0,
     flag: Flag.Jinnu,
-    health: 15
+    health: 15,
+    inventory: []
   })
   const shaman1 = new Shaman({
     name: 'can',
@@ -19,7 +20,8 @@ async function run(): Promise<void> {
     maxFoodLevel: 150,
     foodLevel: 0,
     flag: Flag.Shinso,
-    health: 100
+    health: 15,
+    inventory: []
   })
   const archer = new Archer({
     name: 'archer1',
@@ -27,7 +29,8 @@ async function run(): Promise<void> {
     maxFoodLevel: 150,
     foodLevel: 0,
     flag: Flag.Shinso,
-    health: 100
+    health: 15,
+    inventory: []
   })
   const mage = new Mage({
     name: 'furkan',
@@ -35,7 +38,8 @@ async function run(): Promise<void> {
     maxFoodLevel: 31,
     foodLevel: 0,
     flag: Flag.Shinso,
-    health: 100
+    health: 15,
+    inventory: []
   })
 
   const warrior = new Warrior({
@@ -44,40 +48,47 @@ async function run(): Promise<void> {
     maxFoodLevel: 150,
     foodLevel: 0,
     flag: Flag.Shinso,
-    health: 100
+    health: 15,
+    inventory: []
   })
+
+  //blank username :
   const warrior1 = new Warrior({
-    name: 'warrior1',
-    level: 200,
-    maxFoodLevel: 150,
-    foodLevel: 0,
-    flag: Flag.Shinso,
-    health: 100
+    name: '',
+    level: 100,
+    maxFoodLevel: 100,
+    foodLevel: 10,
+    flag: Flag.Chunjo,
+    health: 15,
+    inventory: []
+  })
+  const sivasliSerkan = new Warrior({
+    name: 'karizma boy',
+    level: 31,
+    maxFoodLevel: 31,
+    foodLevel: 31,
+    flag: Flag.Chunjo,
+    health: 0,
+    inventory: []
   })
   const heroService = new HeroService()
-  const bigSword = new Item('Big Two Handed Sword', Classes.Warrior, 238238)
-  const longBow = new Item('Long Bow', Classes.Archer, 102023)
-  const minBell = new Item('Antique Bell', Classes.Shaman, 238123)
-  const mageBigStaff = new Item('Exclusive Staff', Classes.Shaman, 23892323)
-  heroService.addCharacter(shaman1)
-  heroService.addCharacter(archer)
-  heroService.addCharacter(mage)
-  heroService.addCharacter(warrior)
-  heroService.addCharacter(shaman2)
-  shaman1.addItem(minBell)
-  shaman1.addItem(mageBigStaff)
-  warrior.addItem(bigSword)
-  archer.addItem(longBow)
-  // console.log(shaman1.move(true))
+  const bigSword = new Item('Big Two Handed Sword', CharacterType.Warrior, 238238)
+  const longBow = new Item('Long Bow', CharacterType.Archer, 102023)
+  const minBell = new Item('Antique Bell', CharacterType.Shaman, 238123)
+  const mageBigStaff = new Item('Exclusive Staff', CharacterType.Shaman, 23892323)
+  // console.log(shaman1.addItem(minBell))
+  // console.log(shaman1.addItem(mageBigStaff))
+  // warrior.addItem(bigSword)
+  // archer.addItem(longBow)
+  // await heroService.logAllCharacters()
+  console.log(shaman1.logAllItems())
 
-  // heroService.addCharacterToDatabase(shaman1)
-  // heroService.addCharacterToDatabase(mage)
-  // await shaman1.createCoupon()
-  // await archer.createCoupon()
-  // await mage.createCoupon()
-  // await warrior.createCoupon()
-  // await shaman2.createCoupon()
-  await heroService.createCharacter(warrior1)
+  // await heroService.createCharacter(shaman2)
+  // await heroService.createCharacter(warrior)
+  // await heroService.createCharacter(sivasliSerkan)
+  // await heroService.logAllCharacters()
+  // await heroService.logFlags(Flag.Chunjo)
+  // await heroService.logSpecificClass(CharacterType.Shaman)
 }
 
 //trigger all components :

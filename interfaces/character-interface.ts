@@ -1,6 +1,7 @@
-import { Flag } from '../enums'
+import { Item } from '../components'
 
 export interface ICharacter {
+  inventory: Item[]
   name: string
   level: number
   maxFoodLevel: number

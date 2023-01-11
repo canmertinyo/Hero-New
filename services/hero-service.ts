@@ -1,33 +1,30 @@
 import { Character } from '../components'
 import { characterModel } from '../database/models/character-models'
-import { Classes, Flag } from '../enums'
-import { Document } from 'mongoose'
+import { CharacterType, Flag } from '../enums'
+import { DuplicatedUsernameException } from '../exceptions/duplicated-character-exception'
+import { ICharacter } from '../interfaces/character-interface'
 
 export class HeroService {
   public characters: Character[] = []
 
-  public addCharacter(character: Character): string {
-    return JSON.stringify(this.characters.push(character), null, 5)
+  public async logAllCharacters(): Promise<void> {
+    console.log(await characterModel.find({}).select('name level flag'))
   }
 
-  public logAllCharacters(): void {
-    return this.characters.forEach((hero) => console.log(hero))
+  public async logFlags(flag: Flag): Promise<void> {
+    console.log(await characterModel.findOne({ flag: flag }))
   }
 
-  public logFlags(flag: Flag): Character[] {
-    return this.characters.filter((hero) =>
-      hero.options.flag != flag ? null : JSON.stringify(hero, null, 4)
-    )
+  public async logSpecificClass(characterType: CharacterType): Promise<void> {
+    console.log(await characterModel.findOne({ character: characterType }))
   }
 
-  public logSpecificClass(heroType: Classes): void {
-    console.log(
-      this.characters.filter((hero) => (hero.classes != heroType ? null : JSON.stringify(hero)))
-    )
-  }
+  public async createCharacter(character: Character): Promise<ICharacter> {
+    const isCharacterExists = await characterModel.findOne({ name: character.options.name })
 
-  public async createCharacter(character: Character): Promise<Document> {
-    const result: Document = await characterModel.create({ ...character.options })
-    return result
+    if (isCharacterExists) {
+      throw new DuplicatedUsernameException()
+    }
+    return characterModel.create({ ...character.options })
   }
 }

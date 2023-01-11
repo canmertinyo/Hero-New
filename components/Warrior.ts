@@ -1,12 +1,12 @@
-import { Classes, Flag } from '../enums'
+import { CharacterType, Flag } from '../enums'
 import { ICharacter } from '../interfaces/character-interface'
 import { Character } from './index'
 
 export class Warrior extends Character {
-  public classes?: Classes
+  public characterType?: CharacterType
 
   constructor(public options: ICharacter) {
     super(options)
-    this.classes = Classes.Warrior
+    this.characterType = CharacterType.Warrior
   }
 }

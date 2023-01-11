@@ -1,4 +1,4 @@
-export enum Classes {
+export enum CharacterType {
   Warrior = 'Warrior',
   Archer = 'Archer',
   Mage = 'Mage',

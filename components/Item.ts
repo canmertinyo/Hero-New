@@ -1,5 +1,9 @@
-import { Classes } from '../enums'
+import { CharacterType } from '../enums'
 
 export class Item {
-  constructor(public itemName: string, public classes: Classes, public itemId: number) {}
+  constructor(
+    public itemName: string,
+    public characterType: CharacterType,
+    public itemId: number
+  ) {}
 }
