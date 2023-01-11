@@ -3,9 +3,9 @@ import { Item } from './index'
 import { NameGenerator, RandomCouponCode } from '../services'
 import food from '../json/food.json'
 import cities from '../json/cities.json'
-import { ICharacter } from '../interfaces/character-interface'
+import { ICharacter } from '../interfaces/character.interface'
 import { Coupon } from '../database/models/coupon-model'
-import { ICoupon } from '../interfaces/coupon-interface'
+import { ICoupon } from '../interfaces/coupon.interface'
 
 // joi
 
@@ -15,7 +15,7 @@ export abstract class Character {
   private nameGenerator = new NameGenerator()
 
   constructor(public options: ICharacter) {
-    options.inventory = [] //undefined olmaması için burada initialize edildi.
+    options.inventory = []
   }
 
   public eat(value: number): number | string {

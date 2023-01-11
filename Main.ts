@@ -4,7 +4,7 @@ import { CharacterType, Flag } from './enums/'
 import { HeroService } from './services'
 
 async function run(): Promise<void> {
-  connectToDatabase()
+  await connectToDatabase()
   const shaman2 = new Shaman({
     name: 'stunning mage',
     level: 200,
