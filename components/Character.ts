@@ -6,6 +6,9 @@ import cities from '../json/cities.json'
 import { ICharacter } from '../interfaces/character-interface'
 import { Coupon } from '../database/models/coupon-model'
 import { ICoupon } from '../interfaces/coupon-interface'
+import { Iitem } from '../interfaces/item-interface'
+import { ItemModel } from '../database/models/item-model'
+import { DuplicatedItemException } from '../exceptions/duplicated-item-exception'
 
 // joi
 
@@ -40,13 +43,13 @@ export abstract class Character {
       ? `${this.options.name} is moving to ${cityName}`
       : `${this.options.name} is idling right now.`
   }
-
-  //bu kısım database'e aktarılacak array tabanlı calısma yok artık.
-  // public addItem(items: Item): string {
-  //   const result = `${items.itemName} succesfully added to ${this.options.name}'s inventory`
-  //   this.options.inventory.push(items)
-  //   return result
-  // }
+  public async addItem(item: Item): Promise<Iitem> {
+    const isItemExistsCheck = await ItemModel.findOne({ name: item.item.name })
+    if (isItemExistsCheck) {
+      throw new DuplicatedItemException()
+    }
+    return await ItemModel.create({ ...item.item })
+  }
 
   public logAllItems(): Item[] {
     return this.options.inventory

@@ -71,17 +71,27 @@ async function run(): Promise<void> {
     health: 0,
     inventory: []
   })
+
+  const bigSword = new Item({
+    name: 'Two Handed Big Sword',
+    id: 23823,
+    minLevel: 5,
+    attackRate: 30,
+    criticalChance: 10,
+    characterType: CharacterType.Warrior
+  })
   const heroService = new HeroService()
-  const bigSword = new Item('Big Two Handed Sword', CharacterType.Warrior, 238238)
-  const longBow = new Item('Long Bow', CharacterType.Archer, 102023)
-  const minBell = new Item('Antique Bell', CharacterType.Shaman, 238123)
-  const mageBigStaff = new Item('Exclusive Staff', CharacterType.Shaman, 23892323)
-  // console.log(shaman1.addItem(minBell))
+  // const bigSword = new Item('Big Two Handed Sword', CharacterType.Warrior, 238238)
+  // const longBow = new Item('Long Bow', CharacterType.Archer, 102023)
+  // const minBell = new Item('Antique Bell', CharacterType.Shaman, 238123)
+  // const mageBigStaff = new Item('Exclusive Staff', CharacterType.Shaman, 23892323)
+  // // console.log(shaman1.addItem(minBell))
   // console.log(shaman1.addItem(mageBigStaff))
   // warrior.addItem(bigSword)
   // archer.addItem(longBow)
   // await heroService.logAllCharacters()
-  console.log(shaman1.logAllItems())
+  // console.log(shaman1.logAllItems())
+  console.log(await shaman1.addItem(bigSword))
 
   // await heroService.createCharacter(shaman2)
   // await heroService.createCharacter(warrior)

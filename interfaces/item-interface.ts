@@ -1,9 +1,7 @@
-import { CharacterType } from '../enums'
-
 export interface Iitem {
   name: string
   id: number
-  characterType: CharacterType
+  characterType: string
   minLevel: number
   attackRate: number
   criticalChance: number

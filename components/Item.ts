@@ -1,9 +1,5 @@
-import { CharacterType } from '../enums'
+import { Iitem } from '../interfaces/item-interface'
 
 export class Item {
-  constructor(
-    public itemName: string,
-    public characterType: CharacterType,
-    public itemId: number
-  ) {}
+  constructor(public item: Iitem) {}
 }
