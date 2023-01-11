@@ -50,7 +50,7 @@ export abstract class Character {
   //   return result
   // }
 
-  public logAllItems(): Item[] {
+  public getAllItems(): Item[] {
     return this.options.inventory
   }
 

@@ -81,7 +81,7 @@ async function run(): Promise<void> {
   // warrior.addItem(bigSword)
   // archer.addItem(longBow)
   // await heroService.logAllCharacters()
-  console.log(shaman1.logAllItems())
+  console.log(shaman1.getAllItems())
 
   // await heroService.createCharacter(shaman2)
   // await heroService.createCharacter(warrior)
