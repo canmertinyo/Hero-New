@@ -10,12 +10,12 @@ import { ICoupon } from '../interfaces/coupon-interface'
 // joi
 
 export abstract class Character {
-  public characterType?: CharacterType //ChracterType
-  public randomCouponCode = new RandomCouponCode()
+  protected characterType?: CharacterType
+  private randomCouponCode = new RandomCouponCode()
   private nameGenerator = new NameGenerator()
 
   constructor(public options: ICharacter) {
-    options.inventory = []
+    options.inventory = [] //undefined olmaması için burada initialize edildi.
   }
 
   public eat(value: number): number | string {
@@ -25,7 +25,7 @@ export abstract class Character {
       const foodName = this.nameGenerator.generate(food.foodItems, 'foodName')
       return `hey adventurer, ${this.options.name} you can't eat anymore of this ${foodName}! You reach the maximum capacity.`
     }
-    return (this.options.foodLevel += value)
+    return +(this.options.foodLevel += value)
   }
 
   public attack(character: Character): string | undefined {
@@ -41,9 +41,15 @@ export abstract class Character {
       : `${this.options.name} is idling right now.`
   }
 
-  public addItem(items: Item): number | string {
-    const result = `${items.itemName} succesfully added to ${this.options.name}'s inventory`
-    return this.options.inventory.push(items), result
+  //bu kısım database'e aktarılacak array tabanlı calısma yok artık.
+  // public addItem(items: Item): string {
+  //   const result = `${items.itemName} succesfully added to ${this.options.name}'s inventory`
+  //   this.options.inventory.push(items)
+  //   return result
+  // }
+
+  public logAllItems(): Item[] {
+    return this.options.inventory
   }
 
   public respawn(): void {

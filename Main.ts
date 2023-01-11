@@ -1,4 +1,4 @@
-import { Archer, Character, Item, Mage, Shaman, Warrior } from './components'
+import { Archer, Item, Mage, Shaman, Warrior } from './components'
 import { connectToDatabase } from './database'
 import { CharacterType, Flag } from './enums/'
 import { HeroService } from './services'
@@ -76,16 +76,19 @@ async function run(): Promise<void> {
   const longBow = new Item('Long Bow', CharacterType.Archer, 102023)
   const minBell = new Item('Antique Bell', CharacterType.Shaman, 238123)
   const mageBigStaff = new Item('Exclusive Staff', CharacterType.Shaman, 23892323)
-  shaman1.addItem(minBell)
-  shaman1.addItem(mageBigStaff)
-  warrior.addItem(bigSword)
-  archer.addItem(longBow)
+  // console.log(shaman1.addItem(minBell))
+  // console.log(shaman1.addItem(mageBigStaff))
+  // warrior.addItem(bigSword)
+  // archer.addItem(longBow)
+  // await heroService.logAllCharacters()
+  console.log(shaman1.logAllItems())
+
   // await heroService.createCharacter(shaman2)
   // await heroService.createCharacter(warrior)
   // await heroService.createCharacter(sivasliSerkan)
   // await heroService.logAllCharacters()
   // await heroService.logFlags(Flag.Chunjo)
-  await heroService.logSpecificClass(CharacterType.Shaman)
+  // await heroService.logSpecificClass(CharacterType.Shaman)
 }
 
 //trigger all components :

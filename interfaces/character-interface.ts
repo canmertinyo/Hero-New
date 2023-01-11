@@ -1,5 +1,4 @@
 import { Item } from '../components'
-import { CharacterType } from '../enums'
 
 export interface ICharacter {
   inventory: Item[]
