@@ -18,14 +18,16 @@ export abstract class Character {
     options.inventory = []
   }
 
-  public eat(value: number): number | string {
-    const currentFoodLevelCalculation =
-      this.options.maxFoodLevel - Number(value + this.options.foodLevel <= -1)
-    if (currentFoodLevelCalculation) {
+  public eat(value: number): void {
+    const canCharacterEat = this.options.maxFoodLevel - (value + this.options.foodLevel) <= 0
+
+    if (canCharacterEat) {
       const foodName = this.nameGenerator.generate(food.foodItems, 'foodName')
-      return `hey adventurer, ${this.options.name} you can't eat anymore of this ${foodName}! You reach the maximum capacity.`
+      console.log(
+        `hey adventurer, ${this.options.name} you can't eat anymore of this ${foodName}! You reach the maximum capacity.`
+      )
     }
-    return +(this.options.foodLevel += value)
+    this.options.foodLevel += value
   }
 
   public attack(character: Character): string | undefined {
