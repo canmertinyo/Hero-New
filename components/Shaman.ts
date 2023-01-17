@@ -10,8 +10,8 @@ export class Shaman extends Character {
     this.characterType = CharacterType.Shaman
   }
 
-  public heal(character: Character): string | undefined {
-    if (!character) return
+  public heal(character: Character): void {
+    if (!character) throw new Error('Character is empty!')
     console.log(`${this.options.name} is healing to ${character.options.name}`)
   }
 }
